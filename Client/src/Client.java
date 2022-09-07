@@ -1,19 +1,19 @@
-import java.net.MalformedURLException;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 
 public class Client {
     public static void main(String[] args){
         ServerIF server;
         try{
             server = (ServerIF) Naming.lookup("AddServer");
-            System.out.println("server's answer : " + server.add(1,2));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (NotBoundException e) {
-            e.printStackTrace();
-        } catch (RemoteException e) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Enter a string to save : ");
+            String str = br.readLine();
+            server.save(str);
+        } catch (NotBoundException | IOException e) {
             e.printStackTrace();
         }
     }
