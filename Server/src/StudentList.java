@@ -1,6 +1,5 @@
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,9 +7,9 @@ import java.util.ArrayList;
 public class StudentList {
 	protected ArrayList<Student> vStudent;
 	
-	public StudentList(String sStudentFileName) throws FileNotFoundException, IOException {
+	public StudentList(String sStudentFileName) throws IOException {
 		BufferedReader objStudentFile = new BufferedReader(new FileReader(sStudentFileName));
-		this.vStudent = new ArrayList<Student>();
+		this.vStudent = new ArrayList<>();
 		while (objStudentFile.ready()) {
 			String stuInfo = objStudentFile.readLine();
 			if (!stuInfo.equals("")) {
@@ -24,13 +23,27 @@ public class StudentList {
 		return this.vStudent;
 	}
 
-	public boolean isRegisteredStudent(String sSID) {
+	public Student getStudentRecord(String id){
 		for (int i = 0; i < this.vStudent.size(); i++) {
-			Student objStudent = (Student) this.vStudent.get(i);
-			if (objStudent.match(sSID)) {
-				return true;
+			Student student = (Student) this.vStudent.get(i);
+			if (student.match(id)) {
+				return student;
 			}
 		}
-		return false;
+		return null;
+	}
+
+	public void deleteStudentRecord(String student){
+		for (int i = 0; i < this.vStudent.size(); i++) {
+			Student stu = (Student) this.vStudent.get(i);
+			if (stu.match(student)) {
+				this.vStudent.remove(i);
+				break;
+			}
+		}
+	}
+
+	public void addStudentRecord(Student student){
+		this.vStudent.add(student);
 	}
 }

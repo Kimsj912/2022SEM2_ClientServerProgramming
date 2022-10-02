@@ -24,13 +24,27 @@ public class StudentList {
 		return this.vStudent;
 	}
 
-	public boolean isRegisteredStudent(String sSID) {
+	public Student getStudentRecord(String id){
 		for (int i = 0; i < this.vStudent.size(); i++) {
-			Student objStudent = (Student) this.vStudent.get(i);
-			if (objStudent.match(sSID)) {
-				return true;
+			Student student = (Student) this.vStudent.get(i);
+			if (student.match(id)) {
+				return student;
 			}
 		}
-		return false;
+		return null;
+	}
+
+	public void deleteStudentRecord(String student){
+		for (int i = 0; i < this.vStudent.size(); i++) {
+			Student stu = (Student) this.vStudent.get(i);
+			if (stu.match(student)) {
+				this.vStudent.remove(i);
+				break;
+			}
+		}
+	}
+
+	public void addStudentRecord(Student student){
+		this.vStudent.add(student);
 	}
 }

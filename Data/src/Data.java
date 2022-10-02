@@ -7,8 +7,6 @@ import java.util.*;
 
 
 public class Data extends UnicastRemoteObject implements DataIF {
-    private static final long serialVersionUID = 4974527148936298033L;
-
     protected static StudentList studentList;
     protected static CourseList courseList;
     private Set<String> set;
@@ -27,7 +25,7 @@ public class Data extends UnicastRemoteObject implements DataIF {
             studentList = new StudentList("Students.txt");
             courseList = new CourseList("Courses.txt");
 
-            System.out.println("Data is Ready");
+            System.out.println("Database is Ready");
 
         } catch (ConnectException e){
             System.out.println("Server is already running.");
@@ -43,11 +41,66 @@ public class Data extends UnicastRemoteObject implements DataIF {
         }
     }
 
+    @Override
+    public Student getStudent(String id) throws RemoteException{
+        System.out.println("Student requested.\n>>" + id);
+        return studentList.getStudentRecord(id);
+    }
+
+
     public ArrayList<Student> getAllStudentData() throws RemoteException{
+        System.out.println("returning all student data");
         return studentList.getAllStudentRecords();
     }
+
+    @Override
+    public void addStudent(Student student) throws RemoteException{
+        studentList.addStudentRecord(student);
+        System.out.println("Student added.\n>>" + student);
+    }
+
+    @Override
+    public void deleteStudent(String student) throws RemoteException{
+        studentList.deleteStudentRecord(student);
+        System.out.println("Student deleted.\n>>" + student);
+    }
+
+
+    @Override
+    public Course getCourse(String id) throws RemoteException{
+        System.out.println("Course requested.\n>>" + id);
+        return courseList.getCourseRecord(id);
+    }
+
+    @Override
+    public void addDataConnection(String id) throws RemoteException{
+        set.add(id);
+        System.out.println("Data connection added.\n>>" + id);
+    }
+
+    @Override
+    public void deleteDataConnection(String id) throws RemoteException{
+        set.remove(id);
+        System.out.println("Data connection deleted.\n>>" + id);
+    }
+
     public ArrayList<Course> getAllCoursesData() throws RemoteException{
+        System.out.println("returning all courses data");
         return courseList.getAllCoursesRecords();
     }
+
+    @Override
+    public void addCourse(Course course) throws RemoteException{
+        courseList.addCourseRecord(course);
+        System.out.println("Course added.\n>>" + course);
+    }
+
+    @Override
+    public void deleteCourse(String student) throws RemoteException{
+        courseList.deleteCourseRecord(student);
+        System.out.println("Course deleted.\n>>" + student);
+    }
+
+
 }
 

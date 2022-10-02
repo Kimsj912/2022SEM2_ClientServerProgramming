@@ -22,12 +22,40 @@ public class CourseList {
 	public ArrayList<Course> getAllCoursesRecords() {
 		return this.vCourse;
 	}
-
-	public boolean isRegisteredStudent(String cCID) {
+	public void addCourseRecord(Course course) {
+		this.vCourse.add(course);
+	}
+	public void deleteCourseRecord(String cCID) {
 		for (int i = 0; i < this.vCourse.size(); i++) {
 			Course course = (Course) this.vCourse.get(i);
-			if (course.match(cCID)) return true;
+			if (course.match(cCID)) {
+				this.vCourse.remove(i);
+				break;
+			}
+		}
+	}
+
+	public Course getCourseRecord(String cCID) {
+		for (int i = 0; i < this.vCourse.size(); i++) {
+			Course course = (Course) this.vCourse.get(i);
+			if (course.match(cCID)) {
+				return course;
+			}
+		}
+		return null;
+	}
+
+	public boolean isRegisteredStudent(String cCID) {
+		for (Course value : this.vCourse) {
+			if (((Course) value).match(cCID)) return true;
 		}
 		return false;
+	}
+
+	public Course getCourse(String cCID) {
+		for (Course value : this.vCourse) {
+			if (((Course) value).match(cCID)) return value;
+		}
+		return null;
 	}
 }
