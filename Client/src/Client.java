@@ -18,8 +18,8 @@ public class Client {
             if(sChoice.equals("1")){
                 System.out.println("Server's answer : " + server.getAllStudentData());
             } else if(sChoice.equals("2")){
-                System.out.println("HomeWork!!");
-            } else {
+                System.out.println("Server's answer : " + server.getAllCoursesData());
+                System.out.println("HomeWork!!");} else {
                 System.out.println("HomeWork!!");
             }
         } catch (NotBoundException | IOException e) {

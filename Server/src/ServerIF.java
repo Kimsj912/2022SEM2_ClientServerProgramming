@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public interface ServerIF extends Remote {
     public ArrayList<Student> getAllStudentData() throws RemoteException;
+    public ArrayList<Course> getAllCoursesData() throws RemoteException;
 
 
 }

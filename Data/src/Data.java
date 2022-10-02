@@ -1,17 +1,16 @@
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.rmi.ConnectException;
-import java.rmi.Naming;
-import java.rmi.RemoteException;
+import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 
 
+
 public class Data extends UnicastRemoteObject implements DataIF {
+    private static final long serialVersionUID = 4974527148936298033L;
 
     protected static StudentList studentList;
+    protected static CourseList courseList;
     private Set<String> set;
 
     protected Data() throws RemoteException{
@@ -24,22 +23,31 @@ public class Data extends UnicastRemoteObject implements DataIF {
         try{
             Data data = new Data();
             Naming.rebind("Data", data);
-            System.out.println("Data is Ready");
 
             studentList = new StudentList("Students.txt");
+            courseList = new CourseList("Courses.txt");
 
+            System.out.println("Data is Ready");
 
         } catch (ConnectException e){
             System.out.println("Server is already running.");
+            System.out.println("Problem >> "+  e.detail.toString());
+            System.exit(0);
         } catch (MalformedURLException | RemoteException e) {
             e.printStackTrace();
+            System.out.println("Data store is not ready.");
+            System.exit(0);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("File is not found.");
+            System.exit(0);
         }
     }
 
     public ArrayList<Student> getAllStudentData() throws RemoteException{
         return studentList.getAllStudentRecords();
+    }
+    public ArrayList<Course> getAllCoursesData() throws RemoteException{
+        return courseList.getAllCoursesRecords();
     }
 }
 
