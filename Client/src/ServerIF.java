@@ -1,7 +1,9 @@
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public interface ServerIF extends Remote {
-    public void save (String str) throws RemoteException;
-    public String read () throws RemoteException;
+    public ArrayList<Student> getAllStudentData() throws RemoteException;
+
+
 }
