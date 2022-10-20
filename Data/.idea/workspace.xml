@@ -6,26 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="75018fb4-a344-4f56-bfa0-ab4792bd84fd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../Client/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/CourseList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/ServerIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/ServerIF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/StudentList.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CourseList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CourseList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataIF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ServerIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServerIF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StudentList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StudentList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/CourseList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/CourseList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/DataIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/DataIF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/ServerIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/ServerIF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/StudentList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/StudentList.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +59,9 @@
       <updated>1664712471219</updated>
       <workItem from="1664712472907" duration="3303000" />
       <workItem from="1664716424478" duration="5693000" />
+      <workItem from="1664780061279" duration="824000" />
+      <workItem from="1664785113220" duration="522000" />
+      <workItem from="1664943893601" duration="21000" />
     </task>
     <servers />
   </component>

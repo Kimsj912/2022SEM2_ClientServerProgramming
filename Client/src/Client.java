@@ -9,10 +9,12 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+// exception 처리 추가
+// 유지보수성 추가
 public class Client {
     private static final String clientId ="Client1234";
     protected static ServerIF server;
-    private BufferedReader objReader;
+    private BufferedReader bufferedReader;
 
     public enum EMenu {
         GET_ALL_COURSE("getAllCourseList", "Get all courses"),
@@ -51,7 +53,7 @@ public class Client {
     }
 
     public Client () throws MalformedURLException, NotBoundException, RemoteException{
-        objReader = new BufferedReader(new InputStreamReader(System.in));
+        bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         server = (ServerIF) Naming.lookup("Server");
         // Login Token 과정
         server.addConnection(clientId);
@@ -59,19 +61,13 @@ public class Client {
 
     public void run(){
         try{
-            String sChoice = "";
+            String choice = "";
             while(true) {
                 printMenu();
-                sChoice = objReader.readLine().trim();
-                invokeMethod(EMenu.values()[Integer.parseInt(sChoice)].getMethod());
+                choice = bufferedReader.readLine().trim();
+                System.out.printf("======= %s =======",EMenu.values()[Integer.parseInt(choice)].getDescription().toUpperCase());
+                invokeMethod(EMenu.values()[Integer.parseInt(choice)].getMethod());
                 System.out.println("\n\n");
-                new Thread(() -> {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }).start();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,109 +78,57 @@ public class Client {
         }
     }
 
-
-
+    public String userInput(String message) throws IOException{
+        System.out.print(message);
+        return bufferedReader.readLine().trim();
+    }
     public void printMenu(){
         System.out.println("============== MENU ===========");
         for (EMenu menu : EMenu.values()) {
             System.out.println(menu.ordinal() + ". " + menu.getDescription());
         }
     }
-    public void getAllCourseList() throws RemoteException{
-        System.out.println("============== COURSE LIST ===========");
-        server.getAllCoursesData().forEach(System.out::println);
-    }
-
-    public void getAllStudentList() throws RemoteException{
-        System.out.println("============== STUDENT LIST ===========");
-        server.getAllStudentData().forEach(System.out::println);
-    }
-
+    public void getAllCourseList() throws RemoteException{server.getAllCoursesData().forEach(System.out::println);}
+    public void getAllStudentList() throws RemoteException{server.getAllStudentData().forEach(System.out::println);}
     public void getStudent() throws IOException{
-        BufferedReader objReader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("============== FIND STUDENT ===========");
-        System.out.println("Enter Student ID");
-        String sStudentID = objReader.readLine().trim();
-        Student student = server.getStudent(sStudentID);
-        if(student == null){
-            System.out.println("Student not found");
-        } else {
-            System.out.println(student);
-        }
+        String studentId = userInput("Enter student ID");
+        Student student = server.getStudent(studentId);
+        if(student == null) System.out.println("Student not found");
+        else System.out.println(student);
     }
 
     public void getCourse() throws IOException{
-        BufferedReader objReader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("============== FIND COURSE ===========");
-        System.out.println("Enter Course ID");
-        String sCourseID = objReader.readLine().trim();
-        Course course = server.getCourse(sCourseID);
-        if(course != null){
-            System.out.println(course);
-        } else{
-            System.out.println("Course not found");
-        }
+        String courseId = userInput("Enter course ID");
+        Course course = server.getCourse(courseId);
+        if(course != null) System.out.println(course);
+        else System.out.println("Course not found");
     }
 
-    public void addStudent() throws IOException{
-        BufferedReader objReader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("============== ADD STUDENT ===========");
-        System.out.println("Enter Student ID");
-        String sStudentID = objReader.readLine().trim();
-        System.out.println("Enter Student Last Name");
-        String sStudentLastName = objReader.readLine().trim();
-        System.out.println("Enter Student First Name");
-        String sStudentFirstName = objReader.readLine().trim();
-        System.out.println("Enter Student Major");
-        String sStudentMajor = objReader.readLine().trim();
-        System.out.println("Enter completedCourses (separated by comma)");
-        String sStudentCompletedCourses = objReader.readLine().trim();
-        String[] sStudentCompletedCoursesArray = sStudentCompletedCourses.split(",");
-        ArrayList<String> studentCompletedCourses = new ArrayList<>(Arrays.asList(sStudentCompletedCoursesArray));
 
-        Student student = new Student(sStudentID, sStudentLastName+" "+sStudentFirstName, sStudentMajor, studentCompletedCourses);
+    public void addStudent() throws IOException{
+        String studentId = userInput("Enter student ID");
+        String studentLastName = userInput("Enter student Last name");
+        String studentFirstName = userInput("Enter student First name");
+        String studentMajor = userInput("Enter student Major");
+        ArrayList<String> studentCompletedCourses = new ArrayList<>(Arrays.asList(userInput("Enter completedCourses (separated by comma)").split(",")));
+        Student student = new Student(studentId, studentLastName+" "+studentFirstName, studentMajor, studentCompletedCourses);
         server.addStudent(student);
     }
 
-    public void addCourse() throws IOException {
-        BufferedReader objReader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("============== ADD COURSE ===========");
-        System.out.println("Enter Course ID");
-        String sCourseID = objReader.readLine().trim();
-        System.out.println("Enter Professor Last Name");
-        String sProfName = objReader.readLine().trim();
-        System.out.println("Enter Course Name");
-        String sCourseName = objReader.readLine().trim();
-        System.out.println("Enter preCourses (separated by comma)");
-        String[] sPreCourseArr = objReader.readLine().trim().split(",");
-        ArrayList<String> sPreCourseArrList = new ArrayList<>(Arrays.asList(sPreCourseArr));
-
-        Course course = new Course(sCourseID, sCourseName, sProfName, sPreCourseArrList);
+    public void addCourse() throws IOException{
+        String courseId = userInput("Enter course ID");
+        String courseProfName = userInput("Enter professor Last Name");
+        String courseName = userInput("Enter course name");
+        ArrayList<String> sPreCourseArrList = new ArrayList<>(Arrays.asList(userInput("Enter preCourses (separated by comma)").split(",")));
+        Course course = new Course(courseId, courseProfName, courseName, sPreCourseArrList);
         server.addCourse(course);
     }
-
-    public void deleteStudent() throws IOException {
-        BufferedReader objReader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("============== DELETE STUDENT ===========");
-        System.out.println("Enter Student ID");
-        String sStudentID = objReader.readLine().trim();
-        server.deleteStudent(sStudentID);
-    }
-
-    public void deleteCourse() throws IOException {
-        BufferedReader objReader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("============== DELETE COURSE ===========");
-        System.out.println("Enter Course ID");
-        String sCourseID = objReader.readLine().trim();
-        server.deleteCourse(sCourseID);
-    }
+    public void deleteStudent() throws IOException {server.deleteStudent(userInput("Enter Student ID"));}
+    public void deleteCourse() throws IOException {server.deleteCourse(userInput("Enter Course ID"));}
 
     public void exit() throws RemoteException{
         server.deleteConnection(clientId);
-        System.out.println("============== EXIT ===========");
-        System.out.println(" Good Bye ");
-        System.out.println("（；´д｀）");
-
+        System.out.println(" Good Bye \n（；´д｀）");
         System.exit(0);
     }
 
