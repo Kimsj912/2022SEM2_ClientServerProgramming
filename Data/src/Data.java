@@ -1,3 +1,5 @@
+import Exceptions.NullDataException;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.*;
@@ -5,15 +7,14 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 
 
-
 public class Data extends UnicastRemoteObject implements DataIF {
     protected static StudentList studentList;
     protected static CourseList courseList;
-    private Set<String> set;
+    private final Set<String> connectionServerSet; // connection server set
 
     protected Data() throws RemoteException{
         super();
-        set = new HashSet<>();
+        connectionServerSet = new HashSet<>();
     }
 
     public static void main(String[] args){
@@ -43,64 +44,87 @@ public class Data extends UnicastRemoteObject implements DataIF {
 
     @Override
     public Student getStudent(String id) throws RemoteException{
-        System.out.println("Student requested.\n>>" + id);
-        return studentList.getStudentRecord(id);
+        System.out.println("Student requested.\n" + id);
+        Student student  = studentList.getStudentRecord(id);
+        System.out.println((student == null)?("Student is not found.\n>>" + id) : ("Student is found.\n>>" + student));
+        return student;
     }
 
 
-    public ArrayList<Student> getAllStudentData() throws RemoteException{
+    public ArrayList<Student> getAllStudentData() throws RemoteException, NullDataException{
         System.out.println("returning all student data");
-        return studentList.getAllStudentRecords();
+        ArrayList<Student> studentArrayList = studentList.getAllStudentRecords();
+        if(studentArrayList == null) throw new NullDataException("Student data isn't initialized.");
+        return studentArrayList;
     }
 
     @Override
-    public void addStudent(Student student) throws RemoteException{
+    public boolean addStudent(Student student) throws RemoteException{
         studentList.addStudentRecord(student);
         System.out.println("Student added.\n>>" + student);
+        return true;
     }
 
     @Override
-    public void deleteStudent(String student) throws RemoteException{
-        studentList.deleteStudentRecord(student);
-        System.out.println("Student deleted.\n>>" + student);
+    public boolean deleteStudent(String student) throws RemoteException{
+        boolean result = studentList.deleteStudentRecord(student);
+        System.out.println((result? "The Student has been successfully deleted.\n>>": "The Student is not found.\n >>")+student);
+        return result;
     }
 
 
     @Override
     public Course getCourse(String id) throws RemoteException{
-        System.out.println("Course requested.\n>>" + id);
-        return courseList.getCourseRecord(id);
+        System.out.println("Course requested.\n" + id);
+        Course course  = courseList.getCourseRecord(id);
+        System.out.println((course == null)?("Course is not found.\n>>" + id) : ("Course is found.\n>>" + course));
+        return course;
     }
 
-    @Override
-    public void addDataConnection(String id) throws RemoteException{
-        set.add(id);
-        System.out.println("Data connection added.\n>>" + id);
-    }
 
-    @Override
-    public void deleteDataConnection(String id) throws RemoteException{
-        set.remove(id);
-        System.out.println("Data connection deleted.\n>>" + id);
-    }
 
-    public ArrayList<Course> getAllCoursesData() throws RemoteException{
+    public ArrayList<Course> getAllCoursesData() throws RemoteException, NullDataException{
         System.out.println("returning all courses data");
-        return courseList.getAllCoursesRecords();
+        ArrayList<Course> courseArrayList = courseList.getAllCoursesRecords();
+        if(courseArrayList == null) throw new NullDataException("Course data isn't initialized.");
+        return courseArrayList;
     }
 
     @Override
-    public void addCourse(Course course) throws RemoteException{
+    public boolean addCourse(Course course) throws RemoteException{
         courseList.addCourseRecord(course);
         System.out.println("Course added.\n>>" + course);
+        return true;
     }
 
     @Override
-    public void deleteCourse(String student) throws RemoteException{
-        courseList.deleteCourseRecord(student);
-        System.out.println("Course deleted.\n>>" + student);
+    public boolean deleteCourse(String course) throws RemoteException{
+        boolean result = courseList.deleteCourseRecord(course);
+        System.out.println((result? "The Course has been successfully deleted.\n>>": "The Course is not found.\n >>")+course);
+        return result;
     }
 
+    @Override
+    public boolean addDataConnection(String id) throws RemoteException{
+        if(connectionServerSet.contains(id)){
+            System.out.println("The server is already connected.\n>>"+id);
+            return false;
+        }
+        connectionServerSet.add(id);
+        System.out.println("New Server Connected.\n>>" + id);
+        return true;
+    }
+
+    @Override
+    public boolean deleteDataConnection(String id) throws RemoteException{
+        if(connectionServerSet.contains(id)){
+            connectionServerSet.remove(id);
+            System.out.println("Server connection terminated.\n>>" + id);
+            return true;
+        }
+        System.out.println("Failed: Anonymous server disconnection requested.\n>>" + id);
+        return false;
+    }
 
 }
 

@@ -1,3 +1,6 @@
+import Exceptions.NullDataException;
+
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.rmi.ConnectException;
 import java.rmi.Naming;
@@ -38,62 +41,72 @@ public class Server extends UnicastRemoteObject implements ServerIF {
     }
 
     @Override
-    public ArrayList<Student> getAllStudentData() throws RemoteException{
+    public ArrayList<Student> getAllStudentData() throws RemoteException, NullDataException{
         System.out.println("returning all student data");
         return data.getAllStudentData();
     }
 
     @Override
-    public ArrayList<Course> getAllCoursesData() throws RemoteException{
+    public ArrayList<Course> getAllCoursesData() throws RemoteException, NullDataException{
         System.out.println("returning all course data");
         return data.getAllCoursesData();
     }
 
     @Override
-    public void addStudent(Student student) throws RemoteException{
-        System.out.println("Student added.\n>>" + student);
-        data.addStudent(student);
+    public boolean addStudent(Student student) throws RemoteException{
+        System.out.println("Student added.\n>> " + student);
+        return data.addStudent(student);
     }
     @Override
-    public void addCourse(Course course) throws RemoteException{
-        System.out.println("Course added.\n>>" + course);
-        data.addCourse(course);
-    }
-
-    @Override
-    public void deleteStudent(String student) throws RemoteException{
-        System.out.println("Student deleted.\n>>" + student);
-        data.deleteStudent(student);
+    public boolean addCourse(Course course) throws RemoteException{
+        System.out.println("Course added.\n>> " + course);
+        return data.addCourse(course);
     }
 
     @Override
-    public void deleteCourse(String student) throws RemoteException{
-        System.out.println("Course deleted.\n>>" + student);
-        data.deleteCourse(student);
+    public boolean deleteStudent(String student) throws RemoteException{
+        System.out.println("Student deleted.\n>> " + student);
+        return data.deleteStudent(student);
+    }
+
+    @Override
+    public boolean deleteCourse(String student) throws RemoteException{
+        System.out.println("Course deleted.\n>> " + student);
+        return data.deleteCourse(student);
     }
 
     @Override
     public Student getStudent(String id) throws RemoteException{
-        System.out.println("Student requested.\n>>" + id);
+        System.out.println("Student requested.\n>> " + id);
         return data.getStudent(id);
     }
 
     @Override
     public Course getCourse(String id) throws RemoteException{
-        System.out.println("Course requested.\n>>" + id);
+        System.out.println("Course requested.\n>> " + id);
         return data.getCourse(id);
     }
 
     @Override
-    public void addConnection(String id) throws RemoteException{
-        System.out.println("Client connected.\n>>" + id);
+    public boolean addConnection(String id) throws RemoteException{
+        if(clientList.contains(id)){
+            System.out.println("The Client is already connected.\n>> "+id);
+            return false;
+        }
         clientList.add(id);
+        System.out.println("New Client Connected\n>> " + id);
+        return true;
     }
 
     @Override
-    public void deleteConnection(String id) throws RemoteException{
-        System.out.println("Client disconnected.\n>>" + id);
-        clientList.remove(id);
+    public boolean deleteConnection(String id) throws RemoteException{
+        if(clientList.contains(id)) {
+            System.out.println("Client Connection terminated.\n>> " + id);
+            clientList.remove(id);
+            return true;
+        }
+        System.out.println("Failed: Anonymous client disconnection requested.\n>> " + id);
+        return false;
     }
 
 }

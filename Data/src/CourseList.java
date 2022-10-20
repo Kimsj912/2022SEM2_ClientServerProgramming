@@ -1,4 +1,6 @@
 
+import Exceptions.NullDataException;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,20 +21,22 @@ public class CourseList {
 		fileObj.close();
 	}
 
-	public ArrayList<Course> getAllCoursesRecords() {
+	public ArrayList<Course> getAllCoursesRecords() throws NullDataException{
+		if(this.vCourse.size() == 0) throw new NullDataException("---------No Course  records found-------------");
 		return this.vCourse;
 	}
 	public void addCourseRecord(Course course) {
 		this.vCourse.add(course);
 	}
-	public void deleteCourseRecord(String cCID) {
+	public boolean deleteCourseRecord(String cCID) {
 		for (int i = 0; i < this.vCourse.size(); i++) {
 			Course course = (Course) this.vCourse.get(i);
 			if (course.match(cCID)) {
 				this.vCourse.remove(i);
-				break;
+				return true;
 			}
 		}
+		return false;
 	}
 
 	public Course getCourseRecord(String cCID) {

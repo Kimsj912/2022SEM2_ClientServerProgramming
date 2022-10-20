@@ -1,3 +1,5 @@
+import Exceptions.NullDataException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -65,7 +67,7 @@ public class Client {
             while(true) {
                 printMenu();
                 choice = bufferedReader.readLine().trim();
-                System.out.printf("======= %s =======",EMenu.values()[Integer.parseInt(choice)].getDescription().toUpperCase());
+                System.out.printf("======= %s =======\n",EMenu.values()[Integer.parseInt(choice)].getDescription().toUpperCase());
                 invokeMethod(EMenu.values()[Integer.parseInt(choice)].getMethod());
                 System.out.println("\n\n");
             }
@@ -88,8 +90,20 @@ public class Client {
             System.out.println(menu.ordinal() + ". " + menu.getDescription());
         }
     }
-    public void getAllCourseList() throws RemoteException{server.getAllCoursesData().forEach(System.out::println);}
-    public void getAllStudentList() throws RemoteException{server.getAllStudentData().forEach(System.out::println);}
+    public void getAllCourseList() throws RemoteException, NullDataException{
+        try {
+            server.getAllCoursesData().forEach(System.out::println);
+        } catch (NullDataException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void getAllStudentList() throws RemoteException{
+        try {
+            server.getAllStudentData().forEach(System.out::println);
+        } catch (NullDataException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     public void getStudent() throws IOException{
         String studentId = userInput("Enter student ID");
         Student student = server.getStudent(studentId);
