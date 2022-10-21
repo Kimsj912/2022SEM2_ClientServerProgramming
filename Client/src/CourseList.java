@@ -4,7 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CourseList {
+public class CourseList { // TODO: Caching of course list
 	protected ArrayList<Course> vCourse;
 
 	public CourseList(String sStudentFileName) throws IOException {
@@ -34,7 +34,6 @@ public class CourseList {
 			}
 		}
 	}
-
 	public Course getCourseRecord(String cCID) {
 		for (int i = 0; i < this.vCourse.size(); i++) {
 			Course course = (Course) this.vCourse.get(i);
@@ -44,14 +43,12 @@ public class CourseList {
 		}
 		return null;
 	}
-
 	public boolean isRegisteredStudent(String cCID) {
 		for (Course value : this.vCourse) {
 			if (((Course) value).match(cCID)) return true;
 		}
 		return false;
 	}
-
 	public Course getCourse(String cCID) {
 		for (Course value : this.vCourse) {
 			if (((Course) value).match(cCID)) return value;
