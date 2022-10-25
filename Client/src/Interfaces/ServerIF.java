@@ -1,4 +1,8 @@
+package Interfaces;
+
 import Exceptions.NullDataException;
+import Objects.Course;
+import Objects.Student;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -23,6 +27,7 @@ public interface ServerIF extends Remote {
     public ArrayList<Course> getCoursesByName(String courseName) throws RemoteException, NullDataException;
     public ArrayList<Course> getCoursesByProfessor(String courseProfessor) throws RemoteException, NullDataException;
     public ArrayList<Course> getCoursesByPreCourse(String coursePreCourse) throws RemoteException, NullDataException;
+
     public boolean deleteCourseById(String courseId) throws RemoteException;
     public boolean updateCourse(Course course, Course newCourse) throws RemoteException;
 

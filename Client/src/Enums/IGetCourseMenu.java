@@ -1,6 +1,8 @@
 package Enums;
 
-public enum EGetCourseMenu {
+import Interfaces.ISubMenuInterface;
+
+public enum IGetCourseMenu implements ISubMenuInterface {
     GET_COURSE_BY_ID("getCourseById", "search course by course Id"),
     GET_COURSE_BY_NAME("getCourseByName", "search course by course name"),
     GET_COURSE_BY_PROF("getCourseByProfName", "search course by course's Professor Name"),
@@ -17,7 +19,7 @@ public enum EGetCourseMenu {
     public void setDescription(String description){this.description = description;}
 
     // Constructor
-    EGetCourseMenu(String method, String description){
+    IGetCourseMenu(String method, String description){
         this.method = method;
         this.description = description;
     }

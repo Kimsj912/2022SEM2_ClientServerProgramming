@@ -1,9 +1,10 @@
+package Objects;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-public class Course implements Serializable{
+public class Course implements IObject, Serializable{
     // Variables
     protected String courseId;
     protected String profName;
@@ -40,9 +41,6 @@ public class Course implements Serializable{
     	}
     }
     public boolean match(String courseId) {return this.courseId.equals(courseId);}
-    public ArrayList<String> getCompletedCourses() {
-        return this.preCourse;
-    }
     public String toString() {
         String stringReturn = this.courseId + " " + this.profName + " " + this.courseName;
         for (int i = 0; i < this.preCourse.size(); i++) {

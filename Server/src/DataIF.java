@@ -15,11 +15,14 @@ public interface DataIF extends Remote {
 
     public boolean deleteCourse(String student) throws RemoteException;
 
-    public Student getStudent(String id) throws RemoteException;
+    public Student getStudentById(String id) throws RemoteException;
 
     public Course getCourse(String id) throws RemoteException;
 
     public boolean addDataConnection(String id) throws RemoteException;
     public boolean deleteDataConnection(String id) throws RemoteException;
 
+    public ArrayList<Reservation> getReservations() throws RemoteException;
+
+    void makeReservation(String studentId, String courseId) throws RemoteException;
 }

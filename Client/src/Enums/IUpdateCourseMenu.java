@@ -1,6 +1,8 @@
 package Enums;
 
-public enum EUpdateCourseMenu {
+import Interfaces.ISubMenuInterface;
+
+public enum IUpdateCourseMenu implements ISubMenuInterface {
     UPDATE_COURSE_BY_ID("updateCourseById", "update course search by course Id"),
     UPDATE_COURSE_BY_NAME("updateCourseByName", "update course search  by course name"),
     UPDATE_COURSE_BY_PROF("updateCourseByProfName", "update course search by course's Professor Name"),
@@ -17,7 +19,7 @@ public enum EUpdateCourseMenu {
     public void setDescription(String description){this.description = description;}
 
     // Constructor
-    EUpdateCourseMenu(String method, String description){
+    IUpdateCourseMenu(String method, String description){
         this.method = method;
         this.description = description;
     }

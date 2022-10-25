@@ -1,9 +1,12 @@
 package Enums;
 
-public enum EDeleteCourseMenu {
+import Interfaces.ISubMenuInterface;
+
+public enum IDeleteCourseMenu implements ISubMenuInterface {
     DELETE_COURSE_BY_ID("deleteCourseById", "delete course by course Id"),
     DELETE_COURSE_BY_NAME("deleteCourseByName", "delete course by course name"),
-    DELETE_COURSE_BY_PROF("deleteCourseByProfName", "delete course by course's Professor Name");
+    DELETE_COURSE_BY_PROF("deleteCourseByProfName", "delete course by course's Professor Name"),
+    DELETE_COURSE_BY_PRE_COURSE("deleteCourseByPreCourse", "delete course by course's preCourse");
 
     // Variables
     private String method;
@@ -16,7 +19,7 @@ public enum EDeleteCourseMenu {
     public void setDescription(String description){this.description = description;}
 
     // Constructor
-    EDeleteCourseMenu(String method, String description){
+    IDeleteCourseMenu(String method, String description){
         this.method = method;
         this.description = description;
     }

@@ -1,6 +1,6 @@
 package Enums;
 
-public enum EBasicMenu {
+public enum EMainMenu {
     GET_ALL_COURSE("getAllCourseList", "Get all courses"),
     GET_COURSE("getCourse", "Get course"),
     ADD_COURSE("addCourse", "Add course"),
@@ -10,7 +10,8 @@ public enum EBasicMenu {
     GET_STUDENT("getStudent", "Get student"),
     ADD_STUDENT("addStudent", "Add student"),
     DELETE_STUDENT("deleteStudent", "Delete student"),
-//    UPDATE_STUDENT("updateStudent", "Update student"),
+    UPDATE_STUDENT("updateStudent", "Update student"),
+    MAKE_RESERVATION("makeReservation", "Make course reservation"),
     EXIT("exit", "Program exit");
 
 
@@ -25,7 +26,7 @@ public enum EBasicMenu {
     public void setDescription(String description){this.description = description;}
 
 
-    EBasicMenu(String method, String description){
+    EMainMenu(String method, String description){
         this.method = method;
         this.description = description;
     }

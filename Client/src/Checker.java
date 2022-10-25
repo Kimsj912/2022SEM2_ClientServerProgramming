@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Checker<T>{
     /**
@@ -53,25 +52,7 @@ public class Checker<T>{
         }
         return false;
     }
-    /**
-     * ArrayList, String[], int[], char[], String are supported
-     **/
-    public boolean checkContainTarget(T array, T target){
-        if(array instanceof ArrayList){
-            return ((ArrayList<?>) array).contains(target);
-        }else if(array instanceof String[]){
-            return Arrays.asList((String[]) array).contains(target);
-        }else if(array instanceof int[]){
-            return Arrays.asList((int[]) array).contains(target);
-        }else if(array instanceof char[]){
-            return Arrays.asList((char[]) array).contains(target);
-        }else if(array instanceof String){
-            return ((String) array).contains((String) target);
-        }
-        return false;
-    }
     // Check Valid Number
-
     public boolean checkIntegerRange(int value, int min, int max){
         return value >= min && value <= max;
     }
@@ -88,7 +69,7 @@ public class Checker<T>{
     }
     // Check Valid String
     public boolean checkValidString(String str){
-        return !str.equals("") && !str.equals(" ");
+        return str.equals("") || str.equals(" ");
     }
     public boolean checkAlphabet(String str){
         return str.matches("^[a-zA-Z]*$");

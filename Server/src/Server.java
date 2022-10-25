@@ -1,10 +1,6 @@
 import Exceptions.NullDataException;
 
-import java.lang.reflect.Array;
-import java.net.MalformedURLException;
-import java.rmi.ConnectException;
 import java.rmi.Naming;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
@@ -16,9 +12,19 @@ public class Server extends UnicastRemoteObject implements ServerIF {
     private static DataIF data;
     private static HashSet<String> clientList;
 
+    private ArrayList<Course> courseArrayList;
+    private ArrayList<Student> studentArrayList;
+
+    private boolean courseChanged = false;
+    private boolean studentChanged = false;
+
     protected Server() throws RemoteException{
         super();
         clientList = new HashSet<>();
+        this.courseArrayList = new ArrayList<>();
+//        this.studentChanged = new ArrayList<>();
+        this.courseChanged = false;
+        this.studentChanged = false;
     }
 
     public static void main(String[] args){
@@ -31,25 +37,18 @@ public class Server extends UnicastRemoteObject implements ServerIF {
             Naming.rebind("Server", server);
 
             System.out.println("Server is Ready");
-        } catch (MalformedURLException | RemoteException  e) {
-            e.printStackTrace();
+        } catch (Exception  e) {
             System.out.println("Server is not ready.");
             System.exit(0);
-        } catch (NotBoundException e) {
-            throw new RuntimeException(e);
         }
     }
-
+    // Students
     @Override
     public ArrayList<Student> getAllStudentData() throws RemoteException, NullDataException{
         System.out.println("returning all student data");
-        return data.getAllStudentData();
-    }
-
-    @Override
-    public ArrayList<Course> getAllCoursesData() throws RemoteException, NullDataException{
-        System.out.println("returning all course data");
-        return data.getAllCoursesData();
+        ArrayList<Student> studentArrayList = data.getAllStudentData();
+        if(studentArrayList == null) throw new NullDataException("Student data isn't initialized.");
+        return studentArrayList;
     }
 
     @Override
@@ -57,6 +56,72 @@ public class Server extends UnicastRemoteObject implements ServerIF {
         System.out.println("Student added.\n>> " + student);
         return data.addStudent(student);
     }
+
+    @Override
+    public Student getStudentById(String id) throws RemoteException, NullDataException{
+        return data.getStudentById(id);
+    }
+
+    @Override
+    public ArrayList<Student> getStudentsByLastName(String lastName) throws RemoteException, NullDataException{
+        ArrayList<Student> studentArrayList = data.getAllStudentData();
+        ArrayList<Student> result = new ArrayList<>();
+        for(Student student : studentArrayList){
+            if(student.getLastName().equals(lastName)) result.add(student);
+        }
+        return result;
+    }
+
+    @Override
+    public ArrayList<Student> getStudentsByFirstName(String firstName) throws RemoteException, NullDataException{
+        ArrayList<Student> studentArrayList = data.getAllStudentData();
+        ArrayList<Student> result = new ArrayList<>();
+        for(Student student : studentArrayList){
+            if(student.getFirstName().equals(firstName)) result.add(student);
+        }
+        return result;
+    }
+
+    @Override
+    public ArrayList<Student> getStudentsByMajor(String major) throws RemoteException, NullDataException{
+        ArrayList<Student> studentArrayList = data.getAllStudentData();
+        ArrayList<Student> result = new ArrayList<>();
+        for(Student student : studentArrayList){
+            if(student.getMajor().equals(major)) result.add(student);
+        }
+        return result;
+    }
+
+    @Override
+    public ArrayList<Student> getStudentsByCompletedCourse(String courseId) throws RemoteException, NullDataException{
+        ArrayList<Student> studentArrayList = data.getAllStudentData();
+        ArrayList<Student> result = new ArrayList<>();
+        for(Student student : studentArrayList){
+            if(student.getCompletedCourses().contains(courseId)){
+                result.add(student);
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public boolean deleteStudentById(String studentId) throws RemoteException{
+        return false;
+    }
+
+    @Override
+    public boolean updateStudent(Student student, Student newStudent) throws RemoteException{
+        return false;
+    }
+
+
+    // Courses
+    @Override
+    public ArrayList<Course> getAllCoursesData() throws RemoteException, NullDataException{
+        System.out.println("returning all course data");
+        return data.getAllCoursesData();
+    }
+
     @Override
     public boolean addCourse(Course course) throws RemoteException{
         System.out.println("Course added.\n>> " + course);
@@ -64,28 +129,94 @@ public class Server extends UnicastRemoteObject implements ServerIF {
     }
 
     @Override
-    public boolean deleteStudent(String student) throws RemoteException{
-        System.out.println("Student deleted.\n>> " + student);
-        return data.deleteStudent(student);
-    }
-
-    @Override
-    public boolean deleteCourse(String student) throws RemoteException{
-        System.out.println("Course deleted.\n>> " + student);
-        return data.deleteCourse(student);
-    }
-
-    @Override
-    public Student getStudent(String id) throws RemoteException{
-        System.out.println("Student requested.\n>> " + id);
-        return data.getStudent(id);
-    }
-
-    @Override
-    public Course getCourse(String id) throws RemoteException{
+    public Course getCourseById(String id) throws RemoteException, NullDataException{
         System.out.println("Course requested.\n>> " + id);
         return data.getCourse(id);
     }
+
+    @Override
+    public ArrayList<Course> getCoursesByName(String courseName) throws RemoteException, NullDataException{
+        ArrayList<Course> courseArrayList = data.getAllCoursesData();
+        ArrayList<Course> result = new ArrayList<>();
+        for(Course course : courseArrayList){
+            if(course.getCourseName().equals(courseName)){
+                result.add(course);
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public ArrayList<Course> getCoursesByProfessor(String courseProfessor) throws RemoteException, NullDataException{
+        ArrayList<Course> courseList = data.getAllCoursesData();
+        ArrayList<Course> result = new ArrayList<>();
+        for(Course course : courseList){
+            if(course.getProfName().equals(courseProfessor)){
+                result.add(course);
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public ArrayList<Course> getCoursesByPreCourse(String coursePreCourse) throws RemoteException, NullDataException{
+        ArrayList<Course> courseList = data.getAllCoursesData();
+        ArrayList<Course> result = new ArrayList<>();
+        for(Course course : courseList){
+            for(String preCourse : course.getPreCourse()){
+                if(preCourse.equals(coursePreCourse)){
+                    result.add(course);
+                }
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public boolean deleteCourseById(String courseId) throws RemoteException{
+        System.out.println("Course delete Requested\n>> " + courseId);
+        return data.deleteCourse(courseId);
+    }
+
+    @Override
+    public boolean updateCourse(Course course, Course newCourse) throws RemoteException{
+        System.out.println("Course Update Requested");
+        return false;
+    }
+
+    @Override
+    public boolean makeReservation(String studentId, String courseId) throws RemoteException{
+        try{
+            Student student = data.getStudentById(studentId);
+            Course course = data.getCourse(courseId);
+            ArrayList<Reservation> reservationList = data.getReservations();
+            // StudentId, CourseId Exist?
+            if(student == null || course == null) throw new NullDataException("Student or Course is not exist.");
+            // Student is already enrolled in the course?
+            if(student.getCompletedCourses().contains(courseId)) throw new NullDataException("Student already reserved this course.");
+            // get Reservation List of the course and check if the student is already enrolled.
+            for(Reservation reservation : reservationList){
+                if(reservation.getCourseId().equals(courseId) && reservation.getStudentId().equals(studentId)){
+                    throw new NullDataException("Student already enrolled this course.");
+                }
+            }
+            //  Student is already enrolled in the pre-course?
+            if(course.getPreCourse() != null){
+                for(String preCourse : course.getPreCourse()){
+                    if(!student.getCompletedCourses().contains(preCourse)){
+                        throw new NullDataException("Student didn't take pre-course.");
+                    }
+                }
+            }
+            // if not, add the student to the reservation list. and return true.
+            data.makeReservation(studentId, courseId);
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
     @Override
     public boolean addConnection(String id) throws RemoteException{

@@ -10,11 +10,15 @@ import java.util.*;
 public class Data extends UnicastRemoteObject implements DataIF {
     protected static StudentList studentList;
     protected static CourseList courseList;
+    private static ReservationList reservationList;
     private final Set<String> connectionServerSet; // connection server set
 
-    protected Data() throws RemoteException{
+    protected Data() throws IOException{
         super();
         connectionServerSet = new HashSet<>();
+        studentList = new StudentList("Students.txt");
+        courseList = new CourseList("Courses.txt");
+        reservationList = new ReservationList("Reservations.txt");
     }
 
     public static void main(String[] args){
@@ -22,14 +26,8 @@ public class Data extends UnicastRemoteObject implements DataIF {
         try{
             Data data = new Data();
             Naming.rebind("Data", data);
-
-            studentList = new StudentList("Students.txt");
-            courseList = new CourseList("Courses.txt");
-
             System.out.println("Database is Ready");
-
         } catch (ConnectException e){
-            System.out.println("Server is already running.");
             System.out.println("Problem >> "+  e.detail.toString());
             System.exit(0);
         } catch (MalformedURLException | RemoteException e) {
@@ -43,7 +41,7 @@ public class Data extends UnicastRemoteObject implements DataIF {
     }
 
     @Override
-    public Student getStudent(String id) throws RemoteException{
+    public Student getStudentById(String id) throws RemoteException{
         System.out.println("Student requested.\n" + id);
         Student student  = studentList.getStudentRecord(id);
         System.out.println((student == null)?("Student is not found.\n>>" + id) : ("Student is found.\n>>" + student));
@@ -124,6 +122,17 @@ public class Data extends UnicastRemoteObject implements DataIF {
         }
         System.out.println("Failed: Anonymous server disconnection requested.\n>>" + id);
         return false;
+    }
+
+    @Override
+    public ArrayList<Reservation> getReservations() throws RemoteException{
+        ArrayList<Reservation> reservations = new ArrayList<>();
+        return null;
+    }
+
+    @Override
+    public void makeReservation(String studentId, String courseId) throws RemoteException{
+
     }
 
 }
