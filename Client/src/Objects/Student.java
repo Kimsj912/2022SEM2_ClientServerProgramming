@@ -7,50 +7,46 @@ import java.util.StringTokenizer;
 public class Student implements IObject, Serializable{
     // Variables
     protected String studentId;
-    protected String lastName;
-    private String firstName;
+    protected String name;
     protected String major;
-    protected ArrayList<String> completedCoursesList;
+    protected ArrayList<String> completedCourses;
 
 
     // Getter & Setter
     public String getStudentId(){return studentId;}
-    public String getLastName() {return this.lastName;}
-    public String getFirstName(){return firstName;}
+    public String getName() {return this.name;}
     public String getMajor(){return major;}
-    public ArrayList<String> getCompletedCourses() {return this.completedCoursesList;}
+    public ArrayList<String> getCompletedCourses() {return this.completedCourses;}
     public void setStudentId(String studentId){this.studentId = studentId;}
-    public void setLastName(String lastName){this.lastName = lastName;}
-    public void setFirstName(String firstName){this.firstName = firstName;}
+    public void setName(String name){this.name = name;}
     public void setMajor(String major){this.major = major;}
-    public void setCompletedCoursesList(ArrayList<String> completedCoursesList){this.completedCoursesList = completedCoursesList;}
+    public void setCompletedCourses(ArrayList<String> completedCourses){this.completedCourses = completedCourses;}
 
-    // Constructor
-    public Student(String sStudentID, String lastName,String firstName, String major, ArrayList<String> studentCompletedCourses){
+    // Constructor : Make a student
+    public Student(String sStudentID, String name, String major){
         this.studentId = sStudentID;
-        this.lastName = lastName;
-        this.firstName = firstName;
+        this.name = name;
         this.major = major;
-        this.completedCoursesList = studentCompletedCourses;
+        this.completedCourses = new ArrayList<>();
     }
 
-    public Student(String inputString) {
-        StringTokenizer stringTokenizer = new StringTokenizer(inputString);
+    // Constructor : For Decoding a student
+    public Student(String line) {
+        StringTokenizer stringTokenizer = new StringTokenizer(line);
     	this.studentId = stringTokenizer.nextToken();
-    	this.lastName = stringTokenizer.nextToken();
-        this.firstName = stringTokenizer.nextToken();
+    	this.name = stringTokenizer.nextToken();
     	this.major = stringTokenizer.nextToken();
-    	this.completedCoursesList = new ArrayList<String>();
+    	this.completedCourses = new ArrayList<String>();
     	while (stringTokenizer.hasMoreTokens()) {
-    		this.completedCoursesList.add(stringTokenizer.nextToken());
+    		this.completedCourses.add(stringTokenizer.nextToken());
     	}
     }
-    public boolean match(String studentId) {
-        return this.studentId.equals(studentId);
-    }
+
+    // Method(toString) : For Encoding a student
     public String toString() {
-        StringBuilder stringReturn = new StringBuilder(this.studentId + " " + this.lastName + " " + this.firstName+ " " + this.major);
-        for (String s : this.completedCoursesList) {
+        StringBuilder stringReturn = new StringBuilder(this.studentId + " " + this.name + " " + " " + this.major);
+        this.completedCourses.sort(String::compareTo);
+        for (String s : this.completedCourses) {
             stringReturn.append(" ").append(s.toString());
         }
         return stringReturn.toString();

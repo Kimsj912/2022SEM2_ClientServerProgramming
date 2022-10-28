@@ -1,12 +1,13 @@
-package Enums;
+package MethodEnums.Course;
 
-import Interfaces.ISubMenuInterface;
+import MethodEnums.IMenuInterface;
 
-public enum IDeleteCourseMenu implements ISubMenuInterface {
+public enum SSelectCourse implements IMenuInterface {
+    GET_ALL_COURSES("GetAllCoursesWithPage", "get all courses"),
+    GET_COURSE("getCourse", "get course with variable ways"),
+    ADD_COURSE("addCourse", "add course"),
     DELETE_COURSE_BY_ID("deleteCourseById", "delete course by course Id"),
-    DELETE_COURSE_BY_NAME("deleteCourseByName", "delete course by course name"),
-    DELETE_COURSE_BY_PROF("deleteCourseByProfName", "delete course by course's Professor Name"),
-    DELETE_COURSE_BY_PRE_COURSE("deleteCourseByPreCourse", "delete course by course's preCourse");
+    UPDATE_COURSE_BY_ID("updateCourseById", "update course search by course Id");
 
     // Variables
     private String method;
@@ -19,7 +20,7 @@ public enum IDeleteCourseMenu implements ISubMenuInterface {
     public void setDescription(String description){this.description = description;}
 
     // Constructor
-    IDeleteCourseMenu(String method, String description){
+    SSelectCourse(String method, String description){
         this.method = method;
         this.description = description;
     }

@@ -1,11 +1,13 @@
-package Enums;
+package MethodEnums.Student;
 
-public enum EGetStudentMenu {
+
+import MethodEnums.IMenuInterface;
+
+public enum SGetStudentMenu implements IMenuInterface {
     GET_STUDENT_BY_ID("getStudentById", "Get student by student Id"),
-    GET_STUDENTS_BY_FIRST_NAME("getStudentsByFirstName", "Get students by student First name"),
-    GET_STUDENTS_BY_LAST_NAME("getStudentsByLastName", "Get students by student's last name"),
+    GET_STUDENTS_BY_NAME("getStudentsByName", "Get students by student's name"),
     GET_STUDENTS_BY_MAJOR("getStudentsByMajor", "Get students by student's major"),
-    GET_STUDENTS_BY_COMPLETED_COURSE("getStudentsByCompletedCourse", "Get students who have taken the course.");
+    GET_STUDENTS_BY_COMPLETED_COURSE("getStudentsByCompletedCourseId", "Get students who have taken the course.");
 
     // Variables
     private String method;
@@ -18,7 +20,7 @@ public enum EGetStudentMenu {
     public void setDescription(String description){this.description = description;}
 
     // Constructor
-    EGetStudentMenu(String method, String description){
+    SGetStudentMenu(String method, String description){
         this.method = method;
         this.description = description;
     }

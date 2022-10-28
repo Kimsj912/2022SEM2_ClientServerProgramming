@@ -1,12 +1,12 @@
-package Enums;
+package MethodEnums.Course;
 
-import Interfaces.ISubMenuInterface;
+import MethodEnums.IMenuInterface;
 
-public enum IGetCourseMenu implements ISubMenuInterface {
+public enum SGetCourseMenu implements IMenuInterface {
     GET_COURSE_BY_ID("getCourseById", "search course by course Id"),
-    GET_COURSE_BY_NAME("getCourseByName", "search course by course name"),
-    GET_COURSE_BY_PROF("getCourseByProfName", "search course by course's Professor Name"),
-    GET_COURSE_BY_PRE_COURSE("getCourseByPreCourse", "search course by course's preCourse");
+    GET_COURSES_BY_NAME("getCoursesByName", "search course by course name"),
+    GET_COURSES_BY_PROF("getCoursesByProfessor", "search course by course's Professor Name"),
+    GET_COURSES_BY_PRE_COURSE("getCoursesByPreCourseId", "search course by course's preCourse");
 
     // Variables
     private String method;
@@ -19,7 +19,7 @@ public enum IGetCourseMenu implements ISubMenuInterface {
     public void setDescription(String description){this.description = description;}
 
     // Constructor
-    IGetCourseMenu(String method, String description){
+    SGetCourseMenu(String method, String description){
         this.method = method;
         this.description = description;
     }

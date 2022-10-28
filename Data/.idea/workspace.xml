@@ -5,48 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75018fb4-a344-4f56-bfa0-ab4792bd84fd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Client/src/Constants/Constants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/src/Enums/EMajor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/src/Enums/IGetCourseMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/src/Exceptions/ServerProcessErrorException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/src/Interfaces/ISubMenuInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/src/Interfaces/ServerIF.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/src/Objects/IObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/src/Objects/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Reservations.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Interfaces/IObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Interfaces/ISubMenuInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Reservation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ReservationList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/src/Interfaces/IObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/src/Interfaces/ISubMenuInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/src/Reservation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/src/ReservationList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Checker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Checker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Objects/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/CourseList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Enums/EBasicMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Enums/EMainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Enums/ECourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Enums/ECourse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Enums/EDeleteCourseMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Enums/IDeleteCourseMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Enums/EGetCourseMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Enums/EGetStudentMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Enums/EStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Enums/EStudent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Enums/EUpdateCourseMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Enums/IUpdateCourseMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Exceptions/NullDataException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Exceptions/NullDataException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/ServerIF.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Student.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/StudentList.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataIF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ServerIF.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/DataIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/DataIF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/ServerIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/ServerIF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Student.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,23 +29,23 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/IntelliJJAVA/2022SEM2ClientServer/Data/src",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propCompiler"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/IntelliJJAVA/2022SEM2ClientServer/Data/src&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\IntelliJJAVA\2022SEM2ClientServer\Data\src" />
@@ -120,6 +79,7 @@
       <workItem from="1666420599336" duration="2947000" />
       <workItem from="1666587204415" duration="23000" />
       <workItem from="1666587883666" duration="9888000" />
+      <workItem from="1666720353825" duration="1208000" />
     </task>
     <servers />
   </component>
