@@ -5,7 +5,7 @@ import DataServerIF.StudentIF;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface DataIF extends Remote, StudentIF, CourseIF, ReservationIF {
+public interface DataIF extends Remote, CourseIF, StudentIF, ReservationIF {
 
     // Connection
     public boolean addDataConnection(String id) throws RemoteException;

@@ -38,6 +38,7 @@ public class ReservationList extends ArrayList<Reservation> {
         ArrayList<Reservation> reservationList = new ArrayList<>();
         for(int i = 0; i < this.size(); i++){
             if(this.get(i).getStudentId().equals(studentId)){
+                System.out.println("Reservation is found.(courseId: " + this.get(i).getCourseId() + ", studentId: " + this.get(i).getStudentId() + ")");
                 reservationList.add(this.get(i));
             }
         }
@@ -49,6 +50,7 @@ public class ReservationList extends ArrayList<Reservation> {
         ArrayList<Reservation> reservationList = new ArrayList<>();
         for(int i = 0; i < this.size(); i++){
             if(this.get(i).getCourseId().equals(courseId)){
+                System.out.println("Reservation is found.(courseId: " + this.get(i).getCourseId() + ", studentId: " + this.get(i).getStudentId() + ")");
                 reservationList.add(this.get(i));
             }
         }
@@ -59,6 +61,7 @@ public class ReservationList extends ArrayList<Reservation> {
         System.out.println("get Reservation is requested.(courseId: " + courseId + " studentId: " + studentId+")");
         for(int i = 0; i < this.size(); i++){
             if(this.get(i).getCourseId().equals(courseId) && this.get(i).getStudentId().equals(studentId)){
+                System.out.println("Reservation is found.(courseId: " + this.get(i).getCourseId() + ", studentId: " + this.get(i).getStudentId() + ")");
                 return this.get(i);
             }
         }

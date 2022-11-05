@@ -11,7 +11,7 @@ public interface ReservationIF extends Remote {
     public ArrayList<Reservation> getReservationsByStudentId(String studentId) throws RemoteException, NullDataException;
     public ArrayList<Reservation> getReservationsByCourseId(String courseId) throws RemoteException, NullDataException;
     public Reservation getReservationByBothId(String courseId, String studentId) throws RemoteException, NullDataException;
-    boolean makeReservation(String studentId, String courseId) throws RemoteException;
-    boolean deleteReservation(String courseId, String studentId) throws RemoteException;
+    boolean makeReservation(String courseId, String studentId) throws RemoteException, NullDataException;
+    boolean deleteReservation(String courseId, String studentId) throws RemoteException, NullDataException;
 
 }

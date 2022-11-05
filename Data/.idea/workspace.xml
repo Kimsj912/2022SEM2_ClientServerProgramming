@@ -5,22 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75018fb4-a344-4f56-bfa0-ab4792bd84fd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Client/src/GetStudentClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/src/Utils/Input/InputStudentValue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/CourseClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/CourseClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Enums/EMajor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Enums/EMajor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/GetCourseClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/GetCourseClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/MenuScripts/ECourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/MenuScripts/ECourse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/MenuScripts/EStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/MenuScripts/EStudent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/ServerClientIF/StudentIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/ServerClientIF/StudentIF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/StudentClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/StudentClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Utils/Input/InputCourseValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Utils/Input/InputCourseValue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Utils/Validator/CourseValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Utils/Validator/CourseValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Utils/Validator/StudentValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Utils/Validator/StudentValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CourseData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ReservationData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/StudentData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/MenuScripts/EReservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/MenuScripts/EReservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/ReservationClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/ReservationClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/ServerClientIF/ReservationIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/ServerClientIF/ReservationIF.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lists/StudentList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lists/StudentList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataServerIF/ReservationIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataServerIF/ReservationIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lists/ReservationList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lists/ReservationList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/DataIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/DataIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/DataServerIF/ReservationIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/DataServerIF/ReservationIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/ServerClientIF/ReservationIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/ServerClientIF/ReservationIF.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

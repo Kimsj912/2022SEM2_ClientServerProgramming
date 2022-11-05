@@ -14,8 +14,8 @@ public interface ReservationIF extends Remote {
     Reservation getReservationByBothId(String courseId, String studentId) throws RemoteException, NullDataException;
 
     // CREATE
-    boolean makeReservation(String courseId, String studentId) throws RemoteException;
+    boolean makeReservation(String courseId, String studentId) throws RemoteException, NullDataException;
 
     // DELETE
-    boolean deleteReservation(String courseId, String studentId) throws RemoteException;
+    boolean deleteReservation(String courseId, String studentId) throws RemoteException, NullDataException;
 }
