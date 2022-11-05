@@ -24,7 +24,6 @@ public class GetCourseClient extends CommonClient {
     public void getCourseById() throws RemoteException, IOException, ServiceTerminateException{
         try {
             String courseId = inputCourseValue.inputCourseIdWithValidation();
-            System.out.println("request to Server for Course Id: " + courseId);
             Course course = server.getCourseById(courseId);
             Printer.printItem(course);
         } catch (InvalidDataException | EmptyInputException e) {
@@ -72,7 +71,7 @@ public class GetCourseClient extends CommonClient {
 
     public void getCoursesByPreCourseId() throws RemoteException, IOException, ServiceTerminateException{
         try {
-            String courseId = InputValue.getInputString(ECourse.ENTER_COURSE_ID.getMessage(), true);
+            String courseId = inputCourseValue.inputCourseIdWithValidation();
             ArrayList<Course> courses = server.getCoursesByPreCourseId(CourseValidator.checkValidCourseId(courseId));
             Printer.printList(courses, Course.class);
         } catch (InvalidDataException | EmptyInputException e) {

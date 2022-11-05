@@ -57,8 +57,6 @@ public class InputCourseValue extends InputValue{
         } catch (InvalidDataException e) {
             System.out.println(e.getMessage());
             return inputCoursePreCourseWithValidation();
-        } catch (EmptyInputException e) {
-            return new ArrayList<>();
         }
     }
 

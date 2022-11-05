@@ -60,10 +60,5 @@ public class CourseValidator extends Validator {
         return preCourseList;
     }
 
-    public static int checkValidMaxCapacity(int maxCapacity) throws InvalidDataException{
-        // 0 ~ 1000 (TODO: 처음에 총 학생수를 받아와서 maxCapcity의 값을 지정하면 더 상황에 맞게 오래 갈 수 있는 코드가 될 것 같다)
-        if(!(maxCapacity >= 0 && maxCapacity <= 1000)) throw new InvalidDataException(ECourse.INVALID_MAX_CAPACITY.getMessage());
-        return maxCapacity;
-    }
 
 }

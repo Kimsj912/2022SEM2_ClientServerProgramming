@@ -48,7 +48,7 @@ public class CourseClient extends CommonClient {
             String courseName = inputCourseValue.inputCourseNameWithValidation();
             String courseSemester = inputCourseValue.inputCourseSemesterWithValidation();
             ArrayList<String> coursePreCourse = inputCourseValue.inputCoursePreCourseWithValidation();
-            if(server.isMultiCourseIdExist(coursePreCourse)){
+            if(!server.isMultiCourseIdExist(coursePreCourse)){
                 System.out.println(ECourse.ADD_FAIL_PRE_COURSE_IS_NOT_EXIST.getMessage());
                 return;
             }
@@ -88,27 +88,27 @@ public class CourseClient extends CommonClient {
         try{
             if(course == null) return;
             String courseName = inputCourseValue.inputCourseNameWithValidation();
-            if(courseName == null) return; // --b Ã³¸®
             course.setName(courseName);
-
-            String courseProfessor = inputCourseValue.inputCourseProfNameWithValidation();
-            if(courseProfessor == null) return;
-            course.setProfessor(courseProfessor);
-
-            ArrayList<String> rawPreCourses = inputCourseValue.inputCoursePreCourseWithValidation();
-            course.setPreCourse(rawPreCourses);
-
-            String courseSemester = inputCourseValue.inputCourseSemesterWithValidation();
-            if (courseSemester == null) return;
-            course.setSemester(courseSemester);
-
-            int maxCapacity = inputCourseValue.inputMaxCapacityWithValidation();
-            if (maxCapacity == -1) return;
-            course.setMaxCapacity(maxCapacity);
-        } catch (InvalidDataException e){
-            System.out.println(e.getMessage());
         } catch (EmptyInputException ignored){}
-
+        try {
+            String courseProfessor = inputCourseValue.inputCourseProfNameWithValidation();
+            course.setProfessor(courseProfessor);
+        } catch (EmptyInputException ignored){}
+        try {
+            String courseSemester = inputCourseValue.inputCourseSemesterWithValidation();
+            course.setSemester(courseSemester);
+        } catch (EmptyInputException ignored){}
+        try {
+            do{
+                ArrayList<String> coursePreCourse = inputCourseValue.inputCoursePreCourseWithValidation();
+                if(!server.isMultiCourseIdExist(coursePreCourse)){
+                    System.out.println(ECourse.ADD_FAIL_PRE_COURSE_IS_NOT_EXIST.getMessage());
+                    continue;
+                }
+                course.setPreCourse(coursePreCourse);
+                break;
+            } while (true);
+        } catch (EmptyInputException ignored){}
         if(server.updateCourseById(courseId, course)) System.out.println(ECourse.UPDATE_SUCCESS.getMessage());
         else System.out.println(ECourse.UPDATE_FAIL.getMessage());
     }

@@ -19,7 +19,6 @@ public class CommonClient {
         String method = Printer.selectMenu(eSubMenu, title == null ? eSubMenu.getSimpleName() : title);
         if(method == null) return;
         invokeMethod(invokeClass, method, obj);
-        System.out.println("\n");
     }
 
 

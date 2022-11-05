@@ -50,8 +50,9 @@ public class CourseList {
 	}
 	public ArrayList<Course> getCourseByCourseName(String courseName) {
 		ArrayList<Course> courseArrayList = new ArrayList<>();
+		String upperCaseCourseName = courseName.toUpperCase();
 		for (Course course : this.courseArrayList) {
-			if (course.getName().equals(courseName)) {
+			if (course.getName().toUpperCase().contains(upperCaseCourseName)) {
 				courseArrayList.add(course);
 			}
 		}
@@ -59,8 +60,9 @@ public class CourseList {
 	}
 	public ArrayList<Course> getCourseByProfessor(String professorName) {
 		ArrayList<Course> courseArrayList = new ArrayList<>();
+		String upperCaseProfessorName = professorName.toUpperCase();
 		for (Course course : this.courseArrayList) {
-			if (course.getProfessor().equals(professorName)) {
+			if (course.getProfessor().toUpperCase().contains(upperCaseProfessorName)) {
 				courseArrayList.add(course);
 			}
 		}

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Printer {
 
     public static <T extends Enum<T> & IMenuInterface> String selectMenu(Class<T> eMenu, String title) throws IOException, ServiceTerminateException, EmptyInputException{
-        System.out.printf("======= %s =======\n", title.toUpperCase());
+        System.out.printf("\n======= %s =======\n", title.toUpperCase());
         for(T eUpdateCourseMenu : eMenu.getEnumConstants()){
             System.out.println(eUpdateCourseMenu.ordinal() + ". " + eUpdateCourseMenu.getDescription());
         }
@@ -45,7 +45,7 @@ public class Printer {
     public static void printList(ArrayList<?> list, Class<? extends IObject> classObj){
         System.out.printf("======= %s =======\n", (classObj.getSimpleName()+" List").toUpperCase());
         try {
-            if(list.size() == 0) throw new NullDataException();
+            if(list.size() == 0) throw new NullDataException(classObj.getSimpleName()+" is empty.");
             for(Object object : list) System.out.println(":: "+object);
         } catch (NullDataException e) {
             System.out.println(e.getMessage());
