@@ -45,9 +45,17 @@ public class Data extends UnicastRemoteObject implements DataIF {
             System.out.println("[Error] Unknown Error Occurred");
         }
     }
+
+    @Override
+    public ArrayList<Student> getAllStudentData() throws RemoteException, NullDataException{
+        System.out.println("returning all student data");
+        ArrayList<Student> studentArrayList = studentList.getAllStudentRecords();
+        if(studentArrayList == null) throw new NullDataException("Student data isn't initialized.");
+        return studentArrayList;
+    }
     @Override
     public Student getStudentById(String id) throws RemoteException{
-        System.out.println("Student requested.\n" + id);
+        System.out.println("Get Student requested.(CourseId : " + id + ")");
         Student student  = studentList.getStudentById(id);
         System.out.println((student == null)?("Student is not found.\n>>" + id) : ("Student is found.\n>>" + student));
         return student;
@@ -55,40 +63,52 @@ public class Data extends UnicastRemoteObject implements DataIF {
 
     @Override
     public ArrayList<Student> getStudentsByName(String name) throws RemoteException, NullDataException{
-        return studentList.getStudentsByName(name);
-    }
-
-    @Override
-    public ArrayList<Student> getStudentsByMajor(String major) throws RemoteException, NullDataException{
-        return studentList.getStudentByMajor(major);
-    }
-
-    @Override
-    public ArrayList<Student> getStudentsByCompletedCourse(String courseId) throws RemoteException, NullDataException{
-        return studentList.getStudentsByCompletedCourse(courseId);
-    }
-
-
-    public ArrayList<Student> getAllStudentData() throws RemoteException, NullDataException{
-        System.out.println("returning all student data");
-        ArrayList<Student> studentArrayList = studentList.getAllStudentRecords();
-        if(studentArrayList == null) throw new NullDataException("Student data isn't initialized.");
+        System.out.println("Get Student requested.(CourseName : " + name+")");
+        ArrayList<Student> studentArrayList = studentList.getStudentsByName(name);
+        System.out.println((studentArrayList.size() == 0)?("Student is not found.\n>>" + name) : ("Student is found.\n>>" + studentArrayList));
         return studentArrayList;
     }
 
     @Override
+    public ArrayList<Student> getStudentsByMajor(String major) throws RemoteException, NullDataException{
+        System.out.println("Get Student requested.(CourseMajor : " + major+")");
+        ArrayList<Student> studentArrayList = studentList.getStudentsByMajor(major);
+        System.out.println((studentArrayList.isEmpty())?("Student is not found.\n>>" + major) : ("Student is found.\n>>" + studentArrayList));
+        return studentArrayList;
+    }
+
+    @Override
+    public ArrayList<Student> getStudentsByCompletedCourse(String courseId) throws RemoteException, NullDataException{
+        if(getCourseById(courseId) == null) throw new NullDataException("Course is not found.");
+        System.out.println("Get Student requested.(CompletedCourseId : " + courseId+")");
+        ArrayList<Student> studentArrayList = studentList.getStudentsByCompletedCourse(courseId);
+        System.out.println((studentArrayList.isEmpty())?("Student is not found.\n>>" + courseId) : ("Student is found.\n>>" + studentArrayList));
+        return studentArrayList;
+    }
+
+
+    @Override
     public boolean addStudent(Student student) throws RemoteException{
-        return studentList.addStudent(student);
+        System.out.println("Add Student requested.(Student : " + student + ")");
+        boolean result = studentList.addStudent(student);
+        System.out.println((result)?("Student is added.\n>>" + student) : ("Student is not added.\n>>" + student));
+        return result;
     }
 
     @Override
     public boolean deleteStudentById(String studentId) throws RemoteException{
-        return studentList.deleteStudentById(studentId);
+        System.out.println("Delete Student requested.(StudentId : " + studentId + ")");
+        boolean result = studentList.deleteStudentById(studentId);
+        System.out.println((result)?("Student is deleted.\n>>" + studentId) : ("Student is not deleted.\n>>" + studentId));
+        return result;
     }
 
     @Override
     public boolean updateStudentById(String studentId, Student newStudent) throws RemoteException{
-        return studentList.updateStudentById(studentId, newStudent);
+        System.out.println("Update Student requested.(StudentId : " + studentId + " -> " + newStudent + ")");
+        boolean result = studentList.updateStudentById(studentId, newStudent);
+        System.out.println((result)?("Student is updated.\n>>" + studentId + " -> " + newStudent) : ("Student is not updated.\n>>" + studentId + " -> " + newStudent));
+        return result;
     }
 
     // Course
@@ -111,7 +131,7 @@ public class Data extends UnicastRemoteObject implements DataIF {
     public ArrayList<Course> getCoursesByName(String name) throws RemoteException, NullDataException{
         System.out.println("Get Course requested.(CourseName : " + name+")");
         ArrayList<Course> courseArrayList = courseList.getCourseByCourseName(name);
-        System.out.println((courseArrayList == null)?("Course is not found.\n>>" + name) : ("Courses are found.\n>>" + courseArrayList));
+        System.out.println((courseArrayList.isEmpty())?("Course is not found.\n>>" + name) : ("Courses are found.\n>>" + courseArrayList));
         return courseArrayList;
     }
 
@@ -119,7 +139,7 @@ public class Data extends UnicastRemoteObject implements DataIF {
     public ArrayList<Course> getCoursesByProfessor(String professor) throws RemoteException, NullDataException{
         System.out.println("Get Course requested.(Professor : " + professor+")");
         ArrayList<Course> courseArrayList = courseList.getCourseByProfessor(professor);
-        System.out.println((courseArrayList == null)?("Course is not found.\n>>" + professor) : ("Courses are found.\n>>" + courseArrayList));
+        System.out.println((courseArrayList.isEmpty())?("Course is not found.\n>>" + professor) : ("Courses are found.\n>>" + courseArrayList));
         return courseArrayList;
     }
 
@@ -127,7 +147,7 @@ public class Data extends UnicastRemoteObject implements DataIF {
     public ArrayList<Course> getCoursesByPreCourseId(String preCourseId) throws RemoteException, NullDataException{
         System.out.println("Get Course requested.(PreCourseId : " + preCourseId+")");
         ArrayList<Course> courseArrayList = courseList.getCoursesByPreCourseId(preCourseId);
-        System.out.println((courseArrayList == null)?("Course is not found.\n>>" + preCourseId) : ("Courses are found.\n>>" + courseArrayList));
+        System.out.println((courseArrayList.isEmpty())?("Course is not found.\n>>" + preCourseId) : ("Courses are found.\n>>" + courseArrayList));
         return courseArrayList;
     }
 
@@ -135,7 +155,7 @@ public class Data extends UnicastRemoteObject implements DataIF {
     public ArrayList<Course> getCoursesBySemester(String semester) throws RemoteException, NullDataException{
         System.out.println("Get Course requested.(Semester : " + semester+")");
         ArrayList<Course> courseArrayList = courseList.getCourseBySemester(semester);
-        System.out.println((courseArrayList == null)?("Course is not found.\n>>" + semester) : ("Courses are found.\n>>" + courseArrayList));
+        System.out.println((courseArrayList.isEmpty())?("Course is not found.\n>>" + semester) : ("Courses are found.\n>>" + courseArrayList));
         return courseArrayList;
     }
 

@@ -5,11 +5,10 @@ import MenuScripts.ECourse;
 import MethodEnums.Student.SGetStudentMenu;
 import MenuScripts.EStudent;
 import Objects.Student;
-import Utils.Input.InputValue;
+import Utils.Input.InputStudentValue;
 import Utils.Print.Printer;
-import Utils.Validator.CourseValidator;
-import Utils.Validator.StudentValidator;
 import com.sun.media.sound.InvalidDataException;
+import sun.invoke.empty.Empty;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -18,115 +17,94 @@ import java.util.ArrayList;
 
 public class StudentClient extends CommonClient {
 
-    private static ServerIF server;
+    private final ServerIF server;
+    private final GetStudentClient getStudentClient;
+    private final InputStudentValue inputStudentValue;
 
     public StudentClient(ServerIF server){
-        StudentClient.server = server;
+        this.server = server;
+        this.getStudentClient = new GetStudentClient(server);
+        this.inputStudentValue = new InputStudentValue();
     }
 
 
     public void getAllStudents() throws RemoteException, NullDataException{
-        ArrayList<Student> studentList = server.getAllStudents();
-        Printer.printList(studentList, Student.class);
+        try{
+            ArrayList<Student> studentList = server.getAllStudents();
+            Printer.printList(studentList, Student.class);
+        } catch (RemoteException e){
+            System.out.println(e.getMessage());
+            System.out.println(ECourse.GET_FAIL.getMessage());
+        }
     }
 
     public void getStudent() throws IOException, ServiceTerminateException, EmptyInputException{
-        selectMenu(SGetStudentMenu.class, "Student Menu", this.getClass(), this);
+        selectMenu(SGetStudentMenu.class, "Student Menu", GetStudentClient.class, this.getStudentClient);
     }
 
-    public void getStudentById() throws IOException, NullDataException, ServiceTerminateException, EmptyInputException{
-        String studentId = getStudentIdWithValidation();
-        Student student = server.getStudentById(studentId);
-        Printer.printItem(student);
+    public void addStudent() throws RemoteException, IOException, ServiceTerminateException{
+        try{
+            String studentId;
+            while(true){
+                studentId = inputStudentValue.inputStudentIdWithValidation();
+                if(server.isStudentIdExist(studentId)) System.out.println(EStudent.ADD_FAIL_ALREADY_EXIST.getMessage());
+                else break;
+            }
+            String name = inputStudentValue.inputStudentNameWithValidation();
+            String major = inputStudentValue.inputStudentMajorWithValidation();
+            Student student = new Student(studentId, name, major); // TODO: 학생이 처음 추가되는데 completedCourse가 있는게 이상하다. 로직상으로 안받게 해야지
+            if(server.addStudent(student)) System.out.println(EStudent.ADD_SUCCESS.getMessage());
+            else System.out.println(EStudent.ADD_FAIL.getMessage());
+        } catch (EmptyInputException | InvalidDataException e){
+            System.out.println(e.getMessage());
+        }
     }
 
-    public void getStudentsByName() throws IOException, NullDataException, ServiceTerminateException, EmptyInputException{
-        String name = getStudentNameWithValidation();
-        ArrayList<Student> studentList = server.getStudentsByName(name);
-        Printer.printList(studentList, Student.class);
-    }
-
-    public void getStudentsByMajor() throws IOException, NullDataException, ServiceTerminateException, EmptyInputException{
-        String major = getStudentMajorWithValidation();
-        ArrayList<Student> studentList = server.getStudentsByMajor(major);
-        Printer.printList(studentList, Student.class);
-    }
-
-    public void getStudentsByCompletedCourse() throws IOException, NullDataException, ServiceTerminateException, EmptyInputException{
-        String courseId = getCompletedCourseIdWithValidation();
-        ArrayList<Student> studentList = server.getStudentsByCompletedCourse(courseId);
-        Printer.printList(studentList, Student.class);
-    }
-
-    public void addStudent() throws IOException, NullDataException, ServiceTerminateException, EmptyInputException{
-        String studentId = getStudentIdWithValidation();
-        String name = getStudentNameWithValidation();
-        String major = getStudentMajorWithValidation();
-
-        Student student = new Student(studentId, name, major); // TODO: 학생이 처음 추가되는데 completedCourse가 있는게 이상하다. 로직상으로 안받게 해야지
-        if(server.addStudent(student)) System.out.println(EStudent.ADD_SUCCESS.getMessage());
-        else System.out.println(EStudent.ADD_FAIL.getMessage());
-    }
-
-    public void deleteStudentById() throws IOException, NullDataException, ServiceTerminateException, EmptyInputException{
-        String studentId = getStudentIdWithValidation();
-        if(server.deleteStudentById(studentId)) System.out.println(EStudent.DELETE_SUCCESS.getMessage());
-        else System.out.println(EStudent.DELETE_FAIL.getMessage());
+    public void deleteStudentById() throws RemoteException, IOException, ServiceTerminateException{
+        try {
+            String studentId = inputStudentValue.inputStudentIdWithValidation();
+            if(server.deleteStudentById(studentId)) System.out.println(EStudent.DELETE_SUCCESS.getMessage());
+            else System.out.println(EStudent.DELETE_FAIL.getMessage());
+        } catch (EmptyInputException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void updateStudentById() throws IOException, NullDataException, ServiceTerminateException, EmptyInputException{
-        String studentId = getStudentIdWithValidation();
-        Student student = server.getStudentById(studentId);
-        if(student == null) throw new NullDataException(EStudent.NOT_FOUND.getMessage());
-        Printer.printItem(student);
+        String studentId;
+        Student student;
+        try{
+            studentId = inputStudentValue.inputStudentIdWithValidation();
+            student = server.getStudentById(studentId);
+            if(student == null) throw new NullDataException(EStudent.NOT_FOUND.getMessage());
+            System.out.println("Current Student Info");
+            Printer.printItem(student);
+        } catch (EmptyInputException | NullDataException e){
+            System.out.println(e.getMessage());
+            return;
+        }
 
-        String name = getStudentNameWithValidation();
-        if(name == null) return;
-        student.setName(name);
-
-        String major = getStudentMajorWithValidation();
-        if(major == null) return;
-        student.setMajor(major);
-
+        System.out.println("Input new student information. if you don't want to change, just press enter.");
+        try {
+            String name = inputStudentValue.inputStudentNameWithValidation();
+            student.setName(name);
+        }catch (EmptyInputException ignored){}
+        try {
+            String major = inputStudentValue.inputStudentMajorWithValidation();
+            student.setMajor(major);
+        }catch (EmptyInputException ignored){}
+        try {
+            do{
+                ArrayList<String> completedCourses = inputStudentValue.inputStudentCompletedCourseWithValidation();
+                if(!server.isMultiCourseIdExist(completedCourses)){
+                    System.out.println(EStudent.UPDATE_FAIL_INPUT_COMPLETED_COURSE_IS_NOT_EXIST.getMessage());
+                    continue;
+                }
+                student.setCompletedCourses(completedCourses);
+                break;
+            } while (true);
+        } catch (EmptyInputException ignored){}
         if(server.updateStudentById(studentId, student)) System.out.println(EStudent.UPDATE_SUCCESS.getMessage());
         else System.out.println(EStudent.UPDATE_FAIL.getMessage());
-    }
-
-    // Get Values with Validation
-    private String getStudentIdWithValidation() throws IOException, ServiceTerminateException{
-        try{
-            String studentId = InputValue.getInputString(EStudent.ENTER_STUDENT_ID.getMessage(), false);
-            return StudentValidator.checkValidStudentId(studentId);
-        } catch (InvalidDataException | EmptyInputException e){
-            System.out.println(e.getMessage());
-            return getStudentIdWithValidation();
-        }
-    }
-    private String getStudentNameWithValidation() throws IOException, ServiceTerminateException{
-        try{
-            String name = InputValue.getInputString(EStudent.ENTER_STUDENT_NAME.getMessage(), false);
-            return StudentValidator.checkValidStudentName(name);
-        } catch (InvalidDataException | EmptyInputException e){
-            System.out.println(e.getMessage());
-            return getStudentNameWithValidation();
-        }
-    }
-    private String getStudentMajorWithValidation() throws IOException, ServiceTerminateException{
-        try{
-            String major = InputValue.getInputString(EStudent.ENTER_STUDENT_MAJOR.getMessage(), false);
-            return StudentValidator.checkValidStudentMajor(major);
-        } catch (InvalidDataException | EmptyInputException e){
-            System.out.println(e.getMessage());
-            return getStudentMajorWithValidation();
-        }
-    }
-    private String getCompletedCourseIdWithValidation() throws ServiceTerminateException, EmptyInputException, IOException{
-        try{
-            String courseId = InputValue.getInputString(EStudent.ENTER_COMPLETED_COURSE_ID.getMessage(), false);
-            return CourseValidator.checkValidCourseId(courseId);
-        } catch (InvalidDataException | EmptyInputException e){
-            System.out.println(e.getMessage());
-            return getCompletedCourseIdWithValidation();
-        }
     }
 }

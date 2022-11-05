@@ -1,7 +1,5 @@
 package Enums;
 
-import java.util.ArrayList;
-
 public enum EMajor {
     COMPUTER_SCIENCE("Computer Science", "CS"),
     ELECTRICAL_ENGINEERING("Electrical Engineering", "EE"),
@@ -17,10 +15,10 @@ public enum EMajor {
     public void setMajor(String major){this.major = major;}
     public void setAbbreviation(String abbreviation){this.abbreviation = abbreviation;}
 
-    public static ArrayList<String> getMajorList(){
-        ArrayList<String> majorList = new ArrayList<String>();
-        for(EMajor major : EMajor.values()){
-            majorList.add(major.getMajor());
+    public static String[] getMajorAbbrList(){
+        String[] majorList = new String[EMajor.values().length];
+        for(int i = 0; i < EMajor.values().length; i++){
+            majorList[i] = EMajor.values()[i].getAbbreviation();
         }
         return majorList;
     }

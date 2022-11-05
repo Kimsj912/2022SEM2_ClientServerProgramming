@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class InputCourseValue extends InputValue{
     public String inputCourseIdWithValidation() throws ServiceTerminateException, IOException, EmptyInputException{
         try {
-            String courseId = getInputString(ECourse.ENTER_COURSE_ID.getMessage(), false);
+            String courseId = getInputString(ECourse.ENTER_COURSE_ID.getMessage(), true);
             return CourseValidator.checkValidCourseId(courseId);
         } catch (InvalidDataException e) {
             System.out.println(e.getMessage());
@@ -32,7 +32,7 @@ public class InputCourseValue extends InputValue{
 
     public String inputCourseProfNameWithValidation() throws ServiceTerminateException, IOException, EmptyInputException{
         try {
-            String professor = getInputString(ECourse.ENTER_PROFESSOR.getMessage(), false);
+            String professor = getInputString(ECourse.ENTER_PROFESSOR.getMessage(), true);
             return CourseValidator.checkValidCourseProfessor(professor);
         } catch (InvalidDataException e) {
             System.out.println(e.getMessage());
@@ -52,8 +52,8 @@ public class InputCourseValue extends InputValue{
 
     public ArrayList<String> inputCoursePreCourseWithValidation() throws IOException, ServiceTerminateException, EmptyInputException{
         try {
-            String courseId = getInputString(ECourse.ENTER_PRE_COURSES_MULTI.getMessage(), true);
-            return CourseValidator.checkValidPreCourseLine(courseId);
+            String courseIdLine = getInputString(ECourse.ENTER_PRE_COURSES_MULTI.getMessage(), true);
+            return CourseValidator.checkValidMultiCourseIdLine(courseIdLine);
         } catch (InvalidDataException e) {
             System.out.println(e.getMessage());
             return inputCoursePreCourseWithValidation();

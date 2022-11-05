@@ -14,11 +14,12 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class GetCourseClient extends CommonClient {
-    private final InputCourseValue inputCourseValue = new InputCourseValue();
+    private final InputCourseValue inputCourseValue;
     private final ServerIF server;
 
     public GetCourseClient(ServerIF server) {
         this.server = server;
+        inputCourseValue = new InputCourseValue();
     }
 
     public void getCourseById() throws RemoteException, IOException, ServiceTerminateException{

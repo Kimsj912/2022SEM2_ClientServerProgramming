@@ -1,32 +1,38 @@
 package MenuScripts;
 
 
+import Enums.EMajor;
+
+import java.util.Arrays;
+
 public enum EStudent {
     // Enter Item
-    ENTER_STUDENT_ID("Enter student ID\n>> "),
-    ENTER_STUDENT_NAME("Enter student name\n>> "),
-    ENTER_STUDENT_MAJOR("Enter student Major\n>> "),
-    ENTER_COMPLETED_COURSE_ID("Enter completed course ID\n>> "),
-    ENTER_WANNA_ENTER_STUDENT_COMPLETED_COURSES("Would you like to add completed course? (y/n)\n>> "),
+    ENTER_STUDENT_ID("Enter student ID.\n>> "),
+    ENTER_STUDENT_NAME("Enter student name.\n>> "),
+    ENTER_STUDENT_MAJOR("Enter student Major.\n>> "),
+    ENTER_COMPLETED_COURSE_MULTI("Enter completed course ID.(separated by comma)\n>> "),
 
     // Situation (CRUD)
-    ADD_SUCCESS("The student has been added successfully.\n>> "),
-    ADD_FAIL("Failed to add a student \n>>"),
-    DELETE_SUCCESS("The student has been deleted successfully.\n>> "),
+    GET_FAIL("Failed to get student."),
+    ADD_SUCCESS("The student has been added successfully. "),
+    ADD_FAIL("Failed to add a student "),
+    ADD_FAIL_ALREADY_EXIST("Failed to add a student. The student already exists."),
+    DELETE_SUCCESS("The student has been deleted successfully. "),
 
-    DELETE_FAIL("Failed to delete a student.\n>> "),
-    UPDATE_SUCCESS("The student has been updated successfully.\n>> "),
-    UPDATE_FAIL("Failed to update a student \n>> "),
+    DELETE_FAIL("Failed to delete a student. "),
+    UPDATE_SUCCESS("The student has been updated successfully. "),
+    UPDATE_FAIL("Failed to update a student  "),
+    UPDATE_FAIL_INPUT_COMPLETED_COURSE_IS_NOT_EXIST("Failed to update a student. The course ID does not exist. "),
 
     // Error
-    NOT_FOUND("This student does not exist \n>> "),
-    INVALID_STUDENT_ID("ID must be 5 digits\n>> "),
-    INVALID_STUDENT_NAME("Name must be under 20 characters\n>> "),
-    INVALID_STUDENT_MAJOR("Major must be 2 characters in ME, EE, CS\n>> "),
-    INVALID_STUDENT_COMPLETED_COURSES("Course ID must be 5 digits and Seperated by ','\n>> "),
+    NOT_FOUND("This student does not exist   "),
+    INVALID_STUDENT_ID("ID must be 8 digits "),
+    INVALID_STUDENT_NAME("Name must be under 20 characters "),
+    INVALID_STUDENT_MAJOR("Major must be one of the following: " + Arrays.toString(EMajor.getMajorAbbrList())),
+    INVALID_STUDENT_COMPLETED_COURSES("Student ID must be 8 digits and Seperated by ',' "),
 
-    DUPLICATED_STUDENT_ID("Duplicated Student Id\n>> "),
-    INVALID_YN_ANSWER("Invalid answer. Please enter 'y' or 'n'\n>> ");
+    DUPLICATED_STUDENT_ID("Duplicated Student Id "),
+    INVALID_YN_ANSWER("Invalid answer. Please enter 'y' or 'n' ");
 
 
     private final String message;

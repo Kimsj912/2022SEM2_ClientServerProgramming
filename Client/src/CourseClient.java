@@ -1,6 +1,7 @@
 import Exceptions.EmptyInputException;
 import Exceptions.NullDataException;
 import Exceptions.ServiceTerminateException;
+import MenuScripts.EStudent;
 import ServerClientIF.CourseIF;
 import MenuScripts.ECourse;
 import MethodEnums.Course.SGetCourseMenu;
@@ -27,8 +28,7 @@ public class CourseClient extends CommonClient {
         try{
             ArrayList<Course> courseList = server.getAllCourses();
             Printer.printList(courseList, Course.class);
-        } catch (RemoteException e){
-            System.out.println(e.getMessage());
+        } catch (RemoteException | NullDataException e){
             System.out.println(ECourse.GET_FAIL.getMessage());
         }
     }
@@ -39,10 +39,11 @@ public class CourseClient extends CommonClient {
 
     public void addCourse() throws RemoteException, IOException, ServiceTerminateException{
         try{
-            String courseId = inputCourseValue.inputCourseIdWithValidation();
-            if(server.isCourseIdExist(courseId)){
-                System.out.println(ECourse.ADD_FAIL_ALREADY_EXIST.getMessage());
-                return;
+            String courseId = null;
+            while(true){
+                courseId = inputCourseValue.inputCourseIdWithValidation();
+                if(server.isCourseIdExist(courseId)) System.out.println(ECourse.ADD_FAIL_ALREADY_EXIST.getMessage());
+                else break;
             }
             String courseProfName = inputCourseValue.inputCourseProfNameWithValidation();
             String courseName = inputCourseValue.inputCourseNameWithValidation();
@@ -81,12 +82,13 @@ public class CourseClient extends CommonClient {
             if(course == null) throw new NullDataException(ECourse.NOT_FOUND.getMessage());
             System.out.println("Current Course Info");
             Printer.printItem(course);
-            System.out.println("Input new course information. if you don't want to change, just press enter.");
-        } catch (EmptyInputException e){System.out.println(e.getMessage());
-        } catch (NullDataException e){System.out.println(e.getMessage()); return;}
+        } catch (EmptyInputException | NullDataException e){
+            System.out.println(e.getMessage());
+            return;
+        }
 
+        System.out.println("Input new course information. if you don't want to change, just press enter.");
         try{
-            if(course == null) return;
             String courseName = inputCourseValue.inputCourseNameWithValidation();
             course.setName(courseName);
         } catch (EmptyInputException ignored){}
@@ -102,7 +104,7 @@ public class CourseClient extends CommonClient {
             do{
                 ArrayList<String> coursePreCourse = inputCourseValue.inputCoursePreCourseWithValidation();
                 if(!server.isMultiCourseIdExist(coursePreCourse)){
-                    System.out.println(ECourse.ADD_FAIL_PRE_COURSE_IS_NOT_EXIST.getMessage());
+                    System.out.println(ECourse.UPDATE_FAIL_INPUT_PRE_COURSE_IS_NOT_EXIST.getMessage());
                     continue;
                 }
                 course.setPreCourse(coursePreCourse);

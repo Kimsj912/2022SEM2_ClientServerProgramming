@@ -44,15 +44,16 @@ public class StudentList {
 
 	public ArrayList<Student> getStudentsByName(String name){
 		ArrayList<Student> studentArrayList = new ArrayList<>();
+		String upperCaseName = name.toUpperCase();
 		for(Student student: this.studentArrayList){
-			if(student.getName().equals(name)){
+			if(student.getName().toUpperCase().contains(upperCaseName)){
 				studentArrayList.add(student);
 			}
 		}
 		return studentArrayList;
 	}
 
-	public ArrayList<Student> getStudentByMajor(String major){
+	public ArrayList<Student> getStudentsByMajor(String major){
 		ArrayList<Student> studentArrayList = new ArrayList<>();
 		for(Student student: this.studentArrayList){
 			if(student.getMajor().equals(major)){

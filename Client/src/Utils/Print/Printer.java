@@ -33,22 +33,14 @@ public class Printer {
         return eMenu.getEnumConstants()[Integer.parseInt(choice)].getMethod();
     }
 
-    public static void printItem(IObject item){
-        try{
-            if(item == null) throw new NullDataException();  // checkExistCourseId(courseId)는 여기서 처리된다.
-            System.out.println(item);
-        } catch (NullDataException e){
-            System.out.println(e.getMessage());
-        }
+    public static void printItem(IObject item) throws NullDataException {
+        if(item == null) throw new NullDataException();  // checkExistCourseId(courseId)는 여기서 처리된다.
+        System.out.println(item);
     }
 
-    public static void printList(ArrayList<?> list, Class<? extends IObject> classObj){
+    public static void printList(ArrayList<?> list, Class<? extends IObject> classObj) throws NullDataException{
         System.out.printf("======= %s =======\n", (classObj.getSimpleName()+" List").toUpperCase());
-        try {
-            if(list.size() == 0) throw new NullDataException(classObj.getSimpleName()+" is empty.");
-            for(Object object : list) System.out.println(":: "+object);
-        } catch (NullDataException e) {
-            System.out.println(e.getMessage());
-        }
+        if(list.size() == 0) throw new NullDataException(classObj.getSimpleName()+" is empty.");
+        for(Object object : list) System.out.println(":: "+object);
     }
 }

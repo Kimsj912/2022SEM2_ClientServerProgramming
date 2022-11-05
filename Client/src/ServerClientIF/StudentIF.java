@@ -15,12 +15,12 @@ public interface StudentIF extends Remote {
     ArrayList<Student> getStudentsByMajor(String major) throws RemoteException, NullDataException;
     ArrayList<Student> getStudentsByCompletedCourse(String courseId) throws RemoteException, NullDataException;
 
-    // CREATE
+    // CHECK
+    boolean isStudentIdExist(String studentId) throws RemoteException;
+    // ADD
     boolean addStudent(Student student) throws RemoteException;
-
     // DELETE
     boolean deleteStudentById(String studentId) throws RemoteException;
-
     // UPDATE
     boolean updateStudentById(String studentId, Student newStudent) throws RemoteException;
 

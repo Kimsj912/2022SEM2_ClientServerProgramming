@@ -22,7 +22,11 @@ public class CourseValidator extends Validator {
 
     public static String checkValidCourseName(String courseName) throws EmptyInputException, InvalidDataException, InvalidDataException{
         // 40자리, 한글, 영어, 숫자 체크
-        return checkValidName(courseName, 40);
+        try{
+            return checkValidName(courseName, 40);
+        }catch (InvalidDataException e){
+            throw new InvalidDataException(ECourse.INVALID_COURSE_NAME.getMessage());
+        }
     }
 
     public static String checkValidCourseProfessor(String courseProfessor) throws EmptyInputException, InvalidDataException{
@@ -45,7 +49,7 @@ public class CourseValidator extends Validator {
         return semester;
     }
 
-    public static ArrayList<String> checkValidPreCourseLine(String preCourseLine) throws InvalidDataException{
+    public static ArrayList<String> checkValidMultiCourseIdLine(String preCourseLine) throws InvalidDataException{
         // 5자리, 숫자, 콤마로 구분
         ArrayList<String> preCourseList = new ArrayList<String>();
         if(preCourseLine == null || preCourseLine.trim().length() == 0) return preCourseList;
