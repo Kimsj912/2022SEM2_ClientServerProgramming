@@ -1,12 +1,13 @@
-package Interfaces;
+package ServerClientIF;
 
 import Exceptions.NullDataException;
 import Objects.Reservation;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public interface ReservationIF {
+public interface ReservationIF extends Remote {
     // READ
     ArrayList<Reservation> getReservationsByStudentId(String studentId) throws RemoteException, NullDataException;
     ArrayList<Reservation> getReservationsByCourseId(String courseId) throws RemoteException, NullDataException;

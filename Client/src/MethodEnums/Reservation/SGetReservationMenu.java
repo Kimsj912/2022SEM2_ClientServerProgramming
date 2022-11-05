@@ -5,7 +5,7 @@ import MethodEnums.IMenuInterface;
 public enum SGetReservationMenu implements IMenuInterface {
     GET_RESERVATIONS_BY_STUDENT_ID("getReservationsByStudentId", "search reservation by student Id"),
     GET_RESERVATIONS_BY_COURSE_ID("getReservationsByCourseId", "search reservation by course Id"),
-    GET_RESERVATION_BY_BOTH_ID("getCourseById", "search reservation by student Id and course Id");
+    GET_RESERVATION_BY_BOTH_ID("getReservationByBothId", "search reservation by student Id and course Id");
 
     // Variables
     private String method;

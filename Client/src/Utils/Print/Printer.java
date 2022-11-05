@@ -23,8 +23,13 @@ public class Printer {
         System.out.println();
         String choice = InputValue.getInputString("Select Menu: ", true);
         if(choice == null) return null;
-        int choiceNum = Integer.parseInt(choice);
-        if(choiceNum<0 || eMenu.getEnumConstants().length<=choiceNum) throw new NumberFormatException();
+        try{
+            int choiceNum = Integer.parseInt(choice);
+            if(choiceNum<0 || eMenu.getEnumConstants().length<=choiceNum) throw new NumberFormatException();
+        }catch (NumberFormatException e){
+            System.out.println("Invalid Number of Menu. Please try again.");
+            return selectMenu(eMenu, title);
+        }
         return eMenu.getEnumConstants()[Integer.parseInt(choice)].getMethod();
     }
 
@@ -38,10 +43,10 @@ public class Printer {
     }
 
     public static void printList(ArrayList<?> list, Class<? extends IObject> classObj){
-        System.out.printf("======= %s =======", (classObj.getSimpleName()+" List").toUpperCase());
+        System.out.printf("======= %s =======\n", (classObj.getSimpleName()+" List").toUpperCase());
         try {
             if(list.size() == 0) throw new NullDataException();
-            for(Object object : list) System.out.println(object);
+            for(Object object : list) System.out.println(":: "+object);
         } catch (NullDataException e) {
             System.out.println(e.getMessage());
         }

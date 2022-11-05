@@ -2,6 +2,7 @@ package Exceptions;
 
 public class ServiceTerminateException extends Throwable {
     public ServiceTerminateException(){
-        super("Service Terminated.");
+        System.out.println("Terminate Service.");
+        System.exit(0);
     }
 }

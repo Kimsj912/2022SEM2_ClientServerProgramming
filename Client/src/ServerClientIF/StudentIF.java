@@ -1,14 +1,15 @@
-package Interfaces;
+package ServerClientIF;
 
 import Exceptions.NullDataException;
 import Objects.Student;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public interface StudentIF {
+public interface StudentIF extends Remote {
     // READ
-    ArrayList<Student> getAllStudentsWithPage(int page) throws RemoteException, NullDataException;
+    ArrayList<Student> getAllStudents() throws RemoteException, NullDataException;
     Student getStudentById(String studentId) throws RemoteException, NullDataException;
     ArrayList<Student> getStudentsByName(String name) throws RemoteException, NullDataException;
     ArrayList<Student> getStudentsByMajor(String major) throws RemoteException, NullDataException;

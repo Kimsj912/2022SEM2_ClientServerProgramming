@@ -35,7 +35,6 @@ public class Client extends CommonClient {
             server.addConnection(clientId);
         } catch (RemoteException e){
             System.out.println("Server is not running");
-            System.out.println(e.getCause());
             System.exit(0);
         }
 
@@ -49,21 +48,20 @@ public class Client extends CommonClient {
             String method = Printer.selectMenu(EMainMenu.class, "Main Menu");
             if(method == null) return;
             invokeMethod(this.getClass(), method, this);
-            System.out.println("\n\n");
         }
     }
 
     // ------------------ Main Menu ------------------
     public void selectCourse() throws IOException, ServiceTerminateException, EmptyInputException{
-        selectMenu(SSelectCourse.class, null, CourseClient.class, this.courseClient);
+        selectMenu(SSelectCourse.class, "Select Course Menu", CourseClient.class, this.courseClient);
     }
 
     public void selectStudent() throws IOException, ServiceTerminateException, EmptyInputException{
-        selectMenu(SSelectStudent.class, null, StudentClient.class, this.studentClient);
+        selectMenu(SSelectStudent.class, "Select Student Menu", StudentClient.class, this.studentClient);
     }
 
     public void selectReservation() throws IOException, ServiceTerminateException, EmptyInputException{
-        selectMenu(SSelectReservation.class, null, ReservationClient.class, this.reservationClient);
+        selectMenu(SSelectReservation.class, "Select Reservation Menu", ReservationClient.class, this.reservationClient);
     }
 
     public void exit() throws RemoteException{

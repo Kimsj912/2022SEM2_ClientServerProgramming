@@ -1,23 +1,25 @@
 package Utils.Validator;
 
 import Exceptions.EmptyInputException;
+import com.sun.media.sound.InvalidDataException;
+
+import java.util.regex.Pattern;
 
 public class Validator<T>{
 
-    protected static boolean checkValidId(String id, int length) throws EmptyInputException{
+    protected static String checkValidId(String input, int length) throws EmptyInputException, InvalidDataException{
         // 5ÀÚ¸®, ¼ýÀÚ Ã¼Å©
+        String id = input.trim();
         if(id.trim().equals("")) throw new EmptyInputException();
-        if(!id.matches("^[0-9]*$"))return false;
-        if(id.length() != length) return false;
-        return true;
+        if(!id.matches("^[0-9]*$") || id.length() != length) throw new InvalidDataException();
+        return id;
     }
 
-    protected static boolean checkValidName(String name, int length) throws EmptyInputException{
-        if(name.equals("") || name.equals(" ")) throw new EmptyInputException();
-        if(name.length() < 1) return false;
-        if(name.length() > length) return false;
-        if(!name.matches("^[°¡-ÆRa-zA-Z0-9]*$")) return false;
-        return true;
+    protected static String checkValidName(String input, int length) throws EmptyInputException, InvalidDataException{
+        if(input.trim().equals("")) throw new EmptyInputException();
+        String name = input.replace(" ", "_");
+        String regex = "^[a-zA-Z0-9_]{1," + length + "}$";
+        if(!name.matches(regex)) throw new InvalidDataException("Name must be less than " + length + " characters and only contain letters, numbers, and underscores.");
+        return name;
     }
-
 }

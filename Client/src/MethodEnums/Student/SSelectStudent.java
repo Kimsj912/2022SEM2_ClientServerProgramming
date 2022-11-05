@@ -3,11 +3,11 @@ package MethodEnums.Student;
 import MethodEnums.IMenuInterface;
 
 public enum SSelectStudent implements IMenuInterface {
-    GET_ALL_COURSES("GetAllCoursesWithPage", "get all courses"),
-    GET_COURSE("getCourse", "get course with variable ways"),
-    ADD_COURSE("addCourse", "add course"),
-    DELETE_COURSE_BY_ID("deleteCourseById", "delete course by course Id"),
-    UPDATE_COURSE_BY_ID("updateCourseById", "update course search by course Id");
+    GET_ALL_COURSES("getAllStudents", "get all students"),
+    GET_COURSE("getStudent", "get student with variable ways"),
+    ADD_COURSE("addStudent", "add student"),
+    DELETE_COURSE_BY_ID("deleteStudentById", "delete student by student Id"),
+    UPDATE_COURSE_BY_ID("updateStudentById", "update student search by student Id");
 
 
     // Variables

@@ -1,40 +1,41 @@
 package Objects;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.StringTokenizer;
+import java.util.Date;
 
-public class Reservation implements Serializable {
-    String studentId;
-    String courseId;
+public class Reservation implements IObject, Serializable {
 
-    public Reservation(String studentId, String courseId) {
-        this.studentId = studentId;
+    // Variables
+    protected String courseId;
+    protected String studentId;
+    protected String reservationDate;
+
+
+    // Getter & Setter
+    public String getCourseId(){return courseId;}
+    public void setCourseId(String courseId){this.courseId = courseId;}
+    public String getStudentId(){return studentId;}
+    public void setStudentId(String studentId){this.studentId = studentId;}
+    public String getReservationDate(){return reservationDate;}
+    public void setReservationDate(String reservationDate){this.reservationDate = reservationDate;}
+
+    // Constructor : Make a reservation
+    public Reservation(String courseId, String studentId){
         this.courseId = courseId;
+        this.studentId = studentId;
+        this.reservationDate = new Date().toString();
     }
 
-    public Reservation(String inputString) {
-        StringTokenizer stringTokenizer = new StringTokenizer(inputString);
-        this.courseId = stringTokenizer.nextToken();
-        this.studentId = stringTokenizer.nextToken();
+    // Constructor : For Decoding a reservation
+    public Reservation(String line){
+        String[] data = line.split(" ");
+        this.courseId = data[0];
+        this.studentId = data[1];
+        this.reservationDate = data[2];
     }
 
-    public String getStudentId() {
-        return studentId;
-    }
-    public String getCourseId() {
-        return courseId;
-    }
-
-    public boolean match(String studentId, String courseId) {
-        return this.studentId.equals(studentId) && this.courseId.equals(courseId);
-    }
-
-    @Override
+    // Method(toString) : For Encoding a reservation
     public String toString(){
-        return "Objects.Reservation{" +
-                "studentId='" + studentId + '\'' +
-                ", courseId='" + courseId + '\'' +
-                '}';
+        return this.courseId + " " + this.studentId + " " + this.reservationDate;
     }
 }

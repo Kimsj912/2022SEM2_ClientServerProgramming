@@ -3,7 +3,7 @@ package MethodEnums.Reservation;
 import MethodEnums.IMenuInterface;
 
 public enum SSelectReservation implements IMenuInterface {
-    GET_RESERVATION("getReservation", "get reservation with variable ways"),
+    GET_RESERVATION("getReservationList", "get reservation with variable ways"),
     MAKE_RESERVATION("makeReservation", "add course reservation"),
     DELETE_RESERVATION("deleteReservation", "delete course reservation");
 

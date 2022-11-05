@@ -1,12 +1,12 @@
 import Exceptions.EmptyInputException;
 import Exceptions.NullDataException;
 import Exceptions.ServiceTerminateException;
+import ServerClientIF.CourseIF;
 import MenuScripts.ECourse;
 import MethodEnums.Course.SGetCourseMenu;
 import Objects.Course;
-import Utils.Input.InputValue;
+import Utils.Input.InputCourseValue;
 import Utils.Print.Printer;
-import Utils.Validator.CourseValidator;
 import com.sun.media.sound.InvalidDataException;
 
 import java.io.IOException;
@@ -14,161 +14,104 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class CourseClient extends CommonClient {
-    private static CourseIF server;
+    private final CourseIF server;
+    private final InputCourseValue inputCourseValue = new InputCourseValue();
+    private final GetCourseClient getCourseClient;
+
     public CourseClient(ServerIF server){
-        CourseClient.server = server;
+        this.server = server;
+        this.getCourseClient = new GetCourseClient(server);
     }
 
-    public void getAllCoursesWithPage(int page) throws RemoteException, NullDataException {
-        ArrayList<Course> courses = server.getAllCoursesWithPage(1);
-        Printer.printList(courses, Course.class);
+    public void getAllCourses() throws RemoteException, NullDataException {
+        try{
+            ArrayList<Course> courseList = server.getAllCourses();
+            Printer.printList(courseList, Course.class);
+        } catch (RemoteException e){
+            System.out.println(e.getMessage());
+            System.out.println(ECourse.GET_FAIL.getMessage());
+        }
     }
 
     public void getCourse() throws IOException, ServiceTerminateException, EmptyInputException{
-        selectMenu(SGetCourseMenu.class, "Course Menu", this.getClass(), this);
+        selectMenu(SGetCourseMenu.class, "Course Menu", GetCourseClient.class, this.getCourseClient);
     }
 
-    public void getCourseById() throws RemoteException, IOException, ServiceTerminateException, EmptyInputException, NullDataException{
-        String courseId = getCourseIdWithValidation();
-        Course course = server.getCourseById(courseId);
-        Printer.printItem(course);
+    public void addCourse() throws RemoteException, IOException, ServiceTerminateException{
+        try{
+            String courseId = inputCourseValue.inputCourseIdWithValidation();
+            if(server.isCourseIdExist(courseId)){
+                System.out.println(ECourse.ADD_FAIL_ALREADY_EXIST.getMessage());
+                return;
+            }
+            String courseProfName = inputCourseValue.inputCourseProfNameWithValidation();
+            String courseName = inputCourseValue.inputCourseNameWithValidation();
+            String courseSemester = inputCourseValue.inputCourseSemesterWithValidation();
+            ArrayList<String> coursePreCourse = inputCourseValue.inputCoursePreCourseWithValidation();
+            if(server.isMultiCourseIdExist(coursePreCourse)){
+                System.out.println(ECourse.ADD_FAIL_PRE_COURSE_IS_NOT_EXIST.getMessage());
+                return;
+            }
+            // Create Course Object
+            Course course = new Course(courseId, courseProfName, courseName, courseSemester, coursePreCourse);
+            // Request to Server
+            if(server.addCourse(course)) System.out.println(ECourse.ADD_SUCCESS.getMessage());
+            else System.out.println(ECourse.ADD_FAIL.getMessage());
+        }catch (EmptyInputException | InvalidDataException e){
+            System.out.println(e.getMessage());
+        }
     }
 
-    public void getCoursesByName() throws RemoteException, IOException, NullDataException, ServiceTerminateException, EmptyInputException{
-        String courseName = getCourseNameWithValidation();
-        ArrayList<Course> courses = server.getCoursesByName(courseName);
-        Printer.printList(courses, Course.class);
+    public void deleteCourseById() throws RemoteException, IOException, ServiceTerminateException{
+        try{
+            String courseId = inputCourseValue.inputCourseIdWithValidation();
+            if(server.deleteCourseById(courseId)) System.out.println(ECourse.DELETE_SUCCESS.getMessage());
+            else System.out.println(ECourse.DELETE_FAIL.getMessage());
+        } catch (EmptyInputException e){
+            System.out.println(e.getMessage());
+        }
     }
 
-    public void getCoursesByProfessor() throws RemoteException, IOException, NullDataException, ServiceTerminateException, EmptyInputException{
-        String courseProfName = getCourseProfNameWithValidation();
-        ArrayList<Course> courses = server.getCoursesByProfessor(courseProfName);
-        Printer.printList(courses, Course.class);
-    }
-
-    public void getCoursesBySemester() throws RemoteException, IOException, NullDataException, ServiceTerminateException, EmptyInputException{
-        String courseSemester = getCourseSemesterWithValidation();
-        ArrayList<Course> courses = server.getCoursesBySemester(courseSemester);
-        Printer.printList(courses, Course.class);
-    }
-
-    public void getCoursesByPreCourseId() throws RemoteException, IOException, NullDataException, ServiceTerminateException, EmptyInputException{
-        String courseId = InputValue.getInputString(ECourse.ENTER_PRE_COURSES_SINGLE.getMessage(), true);
-        if(!CourseValidator.checkValidCourseId(courseId))
-            throw new InvalidDataException(ECourse.INVALID_COURSE_ID.getMessage());
-        ArrayList<Course> courses = server.getCoursesByPreCourseId(courseId);
-        Printer.printList(courses, Course.class);
-    }
-
-    public void addCourse() throws RemoteException, IOException, ServiceTerminateException, EmptyInputException{
-        String courseId = getCourseIdWithValidation();
-        String courseProfName = getCourseProfNameWithValidation();
-        String courseName = getCourseNameWithValidation();
-        String courseSemester = getCourseSemesterWithValidation();
-        int maxCapacity = getMaxCapacityWithValidation();
-        ArrayList<String> coursePreCourse = getCoursePreCourseWithValidation();
-
-        // Create Course Object
-        Course course = new Course(courseId, courseProfName, courseName, courseSemester, maxCapacity, coursePreCourse);
-        // Request to Server
-        if(server.addCourse(course)) System.out.println(ECourse.ADD_SUCCESS.getMessage());
-        else System.out.println(ECourse.ADD_FAIL.getMessage());
-    }
-
-    public void deleteCourseById() throws RemoteException, IOException, ServiceTerminateException, EmptyInputException{
-        String courseId = getCourseIdWithValidation();
-        server.deleteCourseById(courseId);
-        System.out.println(ECourse.DELETE_SUCCESS.getMessage());
-    }
-
-    public void updateCourseById() throws RemoteException, IOException, ServiceTerminateException, NullDataException, EmptyInputException{
-        String courseId = getCourseIdWithValidation();
-        Course course = server.getCourseById(courseId);
-        if(course == null) throw new NullDataException(ECourse.NOT_FOUND.getMessage());
-        Printer.printItem(course);
-
-        System.out.println("Input new course information. if you don't want to change, just press enter.");
+    public void updateCourseById() throws RemoteException, IOException, ServiceTerminateException{
+        Course course = null;
+        String courseId = null;
+        try{
+            courseId = inputCourseValue.inputCourseIdWithValidation();
+            course = server.getCourseById(courseId);
+            if(course == null) throw new NullDataException(ECourse.NOT_FOUND.getMessage());
+            System.out.println("Current Course Info");
+            Printer.printItem(course);
+            System.out.println("Input new course information. if you don't want to change, just press enter.");
+        } catch (EmptyInputException e){System.out.println(e.getMessage());
+        } catch (NullDataException e){System.out.println(e.getMessage()); return;}
 
         try{
-            String courseName = getCourseNameWithValidation();
-            if(courseName == null) return;
+            if(course == null) return;
+            String courseName = inputCourseValue.inputCourseNameWithValidation();
+            if(courseName == null) return; // --b Ã³¸®
             course.setName(courseName);
-        }catch (EmptyInputException ignored){}
 
-        try{
-            String courseProfessor = getCourseProfNameWithValidation();
+            String courseProfessor = inputCourseValue.inputCourseProfNameWithValidation();
             if(courseProfessor == null) return;
             course.setProfessor(courseProfessor);
-        }catch (EmptyInputException ignored){}
 
-        try{
-            ArrayList<String> rawPreCourses = getCoursePreCourseWithValidation();
+            ArrayList<String> rawPreCourses = inputCourseValue.inputCoursePreCourseWithValidation();
             course.setPreCourse(rawPreCourses);
-        }catch (EmptyInputException ignored){}
 
-        try {
-            String courseSemester = getCourseSemesterWithValidation();
+            String courseSemester = inputCourseValue.inputCourseSemesterWithValidation();
             if (courseSemester == null) return;
             course.setSemester(courseSemester);
-        }catch (EmptyInputException ignored){}
 
-        try {
-            int maxCapacity = getMaxCapacityWithValidation();
+            int maxCapacity = inputCourseValue.inputMaxCapacityWithValidation();
             if (maxCapacity == -1) return;
             course.setMaxCapacity(maxCapacity);
-        }catch (EmptyInputException ignored){}
+        } catch (InvalidDataException e){
+            System.out.println(e.getMessage());
+        } catch (EmptyInputException ignored){}
 
         if(server.updateCourseById(courseId, course)) System.out.println(ECourse.UPDATE_SUCCESS.getMessage());
         else System.out.println(ECourse.UPDATE_FAIL.getMessage());
     }
-
-
-    // Get Values With Validation
-    private String getCourseIdWithValidation() throws ServiceTerminateException, EmptyInputException, IOException{
-        String courseId = InputValue.getInputString(ECourse.ENTER_COURSE_ID.getMessage(), false);
-        if(!CourseValidator.checkValidCourseId(courseId))
-            throw new InvalidDataException(ECourse.INVALID_COURSE_ID.getMessage());
-        return courseId;
-    }
-    private String getCourseNameWithValidation() throws ServiceTerminateException, EmptyInputException, IOException{
-        String courseName = InputValue.getInputString(ECourse.ENTER_COURSE_NAME.getMessage(), true);
-        if(courseName == null) return null;
-        if(!CourseValidator.checkValidCourseName(courseName))
-            throw new InvalidDataException(ECourse.INVALID_COURSE_NAME.getMessage());
-        return courseName;
-    }
-    private String getCourseProfNameWithValidation() throws ServiceTerminateException, EmptyInputException, IOException{
-        String courseName = InputValue.getInputString(ECourse.ENTER_COURSE_NAME.getMessage(), false);
-        if(!CourseValidator.checkValidCourseName(courseName))
-            throw new InvalidDataException(ECourse.INVALID_COURSE_NAME.getMessage());
-        return courseName;
-    }
-    private String getCourseSemesterWithValidation() throws ServiceTerminateException, EmptyInputException, IOException{
-        String courseSemester = InputValue.getInputString(ECourse.ENTER_SEMESTER.getMessage(), true);
-        if(courseSemester == null) return null;
-        if(!CourseValidator.checkValidCourseSemester(courseSemester))
-            throw new InvalidDataException(ECourse.INVALID_COURSE_SEMESTER.getMessage());
-        return courseSemester;
-    }
-    private ArrayList<String> getCoursePreCourseWithValidation() throws IOException, ServiceTerminateException, EmptyInputException{
-        ArrayList<String> coursePreCourse = new ArrayList<>();
-        while(true){
-            String courseId = InputValue.getInputString(ECourse.ENTER_PRE_COURSES_SINGLE.getMessage(), true);
-            if(courseId == null ||courseId.equals("")) break;
-            if(!CourseValidator.checkValidCourseId(courseId))
-                throw new InvalidDataException(ECourse.INVALID_COURSE_ID.getMessage());
-            coursePreCourse.add(courseId);
-        }
-        return coursePreCourse;
-    }
-    private int getMaxCapacityWithValidation() throws ServiceTerminateException, EmptyInputException, IOException{
-        int maxCapacity = InputValue.getInputInteger(ECourse.ENTER_MAX_CAPACITY.getMessage(), false);
-        if(!CourseValidator.checkValidMaxCapacity(maxCapacity))
-            throw new InvalidDataException(ECourse.INVALID_MAX_CAPACITY.getMessage());
-        return maxCapacity;
-    }
-
-
 }
 
 
