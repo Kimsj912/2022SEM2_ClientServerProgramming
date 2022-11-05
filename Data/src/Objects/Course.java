@@ -1,5 +1,4 @@
-
-import Interfaces.IObject;
+package Objects;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -6,4 +6,8 @@ public class NullDataException extends Exception{
         super(message);
     }
 
+    public NullDataException(){
+        super("Data does not exist.");
+    }
+
 }

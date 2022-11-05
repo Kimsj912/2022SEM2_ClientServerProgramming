@@ -1,8 +1,6 @@
 import Exceptions.EmptyInputException;
 import Exceptions.NullDataException;
 import Exceptions.ServiceTerminateException;
-import Interfaces.CourseIF;
-import Interfaces.ServerIF;
 import MenuScripts.ECourse;
 import MethodEnums.Course.SGetCourseMenu;
 import Objects.Course;
@@ -21,7 +19,7 @@ public class CourseClient extends CommonClient {
         CourseClient.server = server;
     }
 
-    public void getAllCoursesWithPage() throws RemoteException, NullDataException {
+    public void getAllCoursesWithPage(int page) throws RemoteException, NullDataException {
         ArrayList<Course> courses = server.getAllCoursesWithPage(1);
         Printer.printList(courses, Course.class);
     }

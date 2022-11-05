@@ -1,5 +1,5 @@
 package Objects;
 
-public interface IObject {
+public interface IObject{
     public String toString();
 }

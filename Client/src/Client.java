@@ -1,31 +1,23 @@
 import Exceptions.EmptyInputException;
 import Exceptions.ServiceTerminateException;
 import MethodEnums.EMainMenu;
-import MenuScripts.ECourse;
 import MethodEnums.Course.SSelectCourse;
-import Exceptions.NullDataException;
-import Interfaces.ServerIF;
 import MethodEnums.Reservation.SSelectReservation;
 import MethodEnums.Student.SSelectStudent;
-import Objects.Course;
 import Utils.Input.InputValue;
 import Utils.Print.Printer;
-import Utils.Validator.CourseValidator;
-import com.sun.media.sound.InvalidDataException;
 
 import java.io.IOException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class Client extends CommonClient {
-    private static final String serverName = "server";
+    private static final String serverName = "Server";
     protected static ServerIF server;
 
-    private final String clientId;
+    private String clientId;
     private final StudentClient studentClient;
     private final CourseClient courseClient;
     private final ReservationClient reservationClient;
@@ -37,10 +29,16 @@ public class Client extends CommonClient {
 
     public Client () throws IOException, NotBoundException, ServiceTerminateException, EmptyInputException{
         // Login Token °úÁ¤
-        server = (ServerIF) Naming.lookup(serverName);
-        clientId = InputValue.getInputString("Enter username: ", false);
+        try{
+            server = (ServerIF) Naming.lookup(serverName);
+            clientId = InputValue.getInputString("Enter username: ", false);
+            server.addConnection(clientId);
+        } catch (RemoteException e){
+            System.out.println("Server is not running");
+            System.out.println(e.getCause());
+            System.exit(0);
+        }
 
-        server.addConnection(clientId);
         this.studentClient = new StudentClient(server);
         this.courseClient = new CourseClient(server);
         this.reservationClient = new ReservationClient(server);

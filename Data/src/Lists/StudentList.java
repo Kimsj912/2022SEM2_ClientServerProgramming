@@ -1,5 +1,10 @@
+package Lists;
+
+import Exceptions.NullDataException;
+import Objects.Student;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,7 +12,7 @@ import java.util.ArrayList;
 public class StudentList {
 	protected ArrayList<Student> vStudent;
 	
-	public StudentList(String sStudentFileName) throws IOException {
+	public StudentList(String sStudentFileName) throws IOException, FileNotFoundException {
 		BufferedReader objStudentFile = new BufferedReader(new FileReader(sStudentFileName));
 		this.vStudent = new ArrayList<>();
 		while (objStudentFile.ready()) {
@@ -19,7 +24,8 @@ public class StudentList {
 		objStudentFile.close();
 	}
 
-	public ArrayList<Student> getAllStudentRecords() {
+	public ArrayList<Student> getAllStudentRecords() throws NullDataException{
+		if(this.vStudent.size() == 0) throw new NullDataException("---------No student records found-------------");
 		return this.vStudent;
 	}
 
@@ -33,14 +39,15 @@ public class StudentList {
 		return null;
 	}
 
-	public void deleteStudentRecord(String student){
+	public boolean deleteStudentRecord(String student){
 		for (int i = 0; i < this.vStudent.size(); i++) {
 			Student stu = (Student) this.vStudent.get(i);
 			if (stu.match(student)) {
 				this.vStudent.remove(i);
-				break;
+				return true;
 			}
 		}
+		return false;
 	}
 
 	public void addStudentRecord(Student student){

@@ -1,3 +1,5 @@
+package Objects;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -30,7 +32,7 @@ public class Reservation implements Serializable {
 
     @Override
     public String toString(){
-        return "Reservation{" +
+        return "Objects.Reservation{" +
                 "studentId='" + studentId + '\'' +
                 ", courseId='" + courseId + '\'' +
                 '}';

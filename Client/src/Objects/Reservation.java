@@ -1,6 +1,7 @@
 package Objects;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Reservation implements IObject, Serializable {
 
@@ -9,8 +10,6 @@ public class Reservation implements IObject, Serializable {
     protected String courseId;
     protected String studentId;
     protected String reservationDate;
-    protected boolean isPreReservation;
-    protected boolean isReservation;
 
 
     // Getter & Setter
@@ -22,18 +21,13 @@ public class Reservation implements IObject, Serializable {
     public void setStudentId(String studentId){this.studentId = studentId;}
     public String getReservationDate(){return reservationDate;}
     public void setReservationDate(String reservationDate){this.reservationDate = reservationDate;}
-    public boolean isPreReservation(){return isPreReservation;}
-    public void setPreReservation(boolean preReservation){isPreReservation = preReservation;}
-    public boolean isReservation(){return isReservation;}
-    public void setReservation(boolean reservation){isReservation = reservation;}
 
     // Constructor : Make a reservation
     public Reservation(String courseId, String studentId){
+        this.reservationId = "R" + (new Date().getTime() + "").substring(5);
         this.courseId = courseId;
         this.studentId = studentId;
-        this.reservationDate = null;
-        this.isPreReservation = false;
-        this.isReservation = false;
+        this.reservationDate = new Date().toString();
     }
 
     // Constructor : For Decoding a reservation
@@ -43,12 +37,10 @@ public class Reservation implements IObject, Serializable {
         this.courseId = data[1];
         this.studentId = data[2];
         this.reservationDate = data[3];
-        this.isPreReservation = Boolean.parseBoolean(data[4]);
-        this.isReservation = Boolean.parseBoolean(data[5]);
     }
 
     // Method(toString) : For Encoding a reservation
     public String toString(){
-        return this.reservationId + " " + this.courseId + " " + this.studentId + " " + this.reservationDate + " " + this.isPreReservation + " " + this.isReservation;
+        return this.reservationId + " " + this.courseId + " " + this.studentId + " " + this.reservationDate;
     }
 }

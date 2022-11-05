@@ -1,4 +1,6 @@
 import Exceptions.NullDataException;
+import Objects.Course;
+import Objects.Student;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

@@ -1,8 +1,6 @@
 import Exceptions.EmptyInputException;
 import Exceptions.NullDataException;
 import Exceptions.ServiceTerminateException;
-import Interfaces.ReservationIF;
-import Interfaces.ServerIF;
 import MenuScripts.ECourse;
 import MenuScripts.EReservation;
 import MenuScripts.EStudent;
@@ -15,7 +13,6 @@ import Utils.Validator.StudentValidator;
 import com.sun.media.sound.InvalidDataException;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class ReservationClient extends CommonClient{
@@ -27,7 +24,7 @@ public class ReservationClient extends CommonClient{
     public void getReservationList() throws IOException, ServiceTerminateException, EmptyInputException{
         selectMenu(SGetStudentMenu.class, "Reservation Menu", this.getClass(), this);
     }
-`
+
     public void getReservationByStudentId() throws IOException, NullDataException, ServiceTerminateException, EmptyInputException{
         String studentId = getStudentIdWithValidation();
         ArrayList<Reservation> reservationList = server.getReservationsByStudentId(studentId);

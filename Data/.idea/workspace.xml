@@ -5,7 +5,70 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75018fb4-a344-4f56-bfa0-ab4792bd84fd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Exceptions/AlreadyExsitException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Exceptions/InvalidInputException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/CourseClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/CourseClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Enums/EErrorMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Enums/EMajor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enums/EMajor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Enums/ESemesterType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enums/ESemesterType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Exceptions/EmptyInputException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/EmptyInputException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Exceptions/InvalidInputException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Exceptions/NullDataException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Exceptions/ServerIsNotReadyException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/ServerIsNotReadyException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Exceptions/ServerProcessErrorException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/ServerProcessErrorException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Exceptions/ServiceTerminateException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/ServiceTerminateException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Interfaces/CourseIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/CourseIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Interfaces/ReservationIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/ReservationIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Interfaces/ServerIF.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Interfaces/StudentIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/StudentIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/MenuScripts/ECourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuScripts/ECourse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/MenuScripts/EReservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuScripts/EReservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/MenuScripts/EStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuScripts/EStudent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/MethodEnums/Course/SGetCourseMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/MethodEnums/Course/SSelectCourse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/MethodEnums/EMainMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/MethodEnums/IMenuInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/MethodEnums/Reservation/SGetReservationMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/MethodEnums/Reservation/SSelectReservation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/MethodEnums/Student/SGetStudentMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/MethodEnums/Student/SSelectStudent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Objects/Course.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Objects/IObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Objects/Reservation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Objects/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/ReservationClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/ReservationClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/StudentClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/StudentClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Utils/Input/InputValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Input/InputValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Utils/Print/Printer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Print/Printer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Utils/Validator/CourseValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Validator/CourseValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Utils/Validator/StudentValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Validator/StudentValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Utils/Validator/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Validator/Validator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CourseList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lists/CourseList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/NullDataException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/NullDataException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/IObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/ISubMenuInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Reservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ReservationList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lists/ReservationList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ServerIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServerIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StudentList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lists/StudentList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Course.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/CourseList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/DataIF.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Exceptions/NullDataException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Interfaces/IObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Interfaces/ISubMenuInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Reservation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/ReservationList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/ServerIF.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/StudentList.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +115,7 @@
       <recent name="C:\IntelliJJAVA\2022SEM2ClientServer\Data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\IntelliJJAVA\2022SEM2ClientServer\Data\src\Objects" />
       <recent name="C:\IntelliJJAVA\2022SEM2ClientServer\Data" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -91,7 +155,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Data.java</url>
-          <line>93</line>
+          <line>129</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

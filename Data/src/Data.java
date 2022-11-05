@@ -6,6 +6,10 @@ import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 
+import Lists.CourseList;
+import Lists.ReservationList;
+import Lists.StudentList;
+import Objects.*;
 
 public class Data extends UnicastRemoteObject implements DataIF {
     protected static StudentList studentList;
@@ -42,64 +46,114 @@ public class Data extends UnicastRemoteObject implements DataIF {
 
     @Override
     public Student getStudentById(String id) throws RemoteException{
-        System.out.println("Student requested.\n" + id);
+        System.out.println("Objects.Student requested.\n" + id);
         Student student  = studentList.getStudentRecord(id);
-        System.out.println((student == null)?("Student is not found.\n>>" + id) : ("Student is found.\n>>" + student));
+        System.out.println((student == null)?("Objects.Student is not found.\n>>" + id) : ("Objects.Student is found.\n>>" + student));
         return student;
+    }
+
+    @Override
+    public ArrayList<Student> getStudentsByName(String name) throws RemoteException, NullDataException{
+        return null;
+    }
+
+    @Override
+    public ArrayList<Student> getStudentsByMajor(String major) throws RemoteException, NullDataException{
+        return null;
+    }
+
+    @Override
+    public ArrayList<Student> getStudentsByCompletedCourse(String courseId) throws RemoteException, NullDataException{
+        return null;
     }
 
 
     public ArrayList<Student> getAllStudentData() throws RemoteException, NullDataException{
         System.out.println("returning all student data");
         ArrayList<Student> studentArrayList = studentList.getAllStudentRecords();
-        if(studentArrayList == null) throw new NullDataException("Student data isn't initialized.");
+        if(studentArrayList == null) throw new NullDataException("Objects.Student data isn't initialized.");
         return studentArrayList;
     }
 
     @Override
     public boolean addStudent(Student student) throws RemoteException{
         studentList.addStudentRecord(student);
-        System.out.println("Student added.\n>>" + student);
+        System.out.println("Objects.Student added.\n>>" + student);
         return true;
     }
 
     @Override
-    public boolean deleteStudent(String student) throws RemoteException{
-        boolean result = studentList.deleteStudentRecord(student);
-        System.out.println((result? "The Student has been successfully deleted.\n>>": "The Student is not found.\n >>")+student);
-        return result;
+    public boolean deleteStudentById(String studentId) throws RemoteException{
+        return false;
     }
-
 
     @Override
-    public Course getCourse(String id) throws RemoteException{
-        System.out.println("Course requested.\n" + id);
-        Course course  = courseList.getCourseRecord(id);
-        System.out.println((course == null)?("Course is not found.\n>>" + id) : ("Course is found.\n>>" + course));
-        return course;
+    public boolean updateStudentById(String studentId, Student newStudent) throws RemoteException{
+        return false;
     }
-
-
 
     public ArrayList<Course> getAllCoursesData() throws RemoteException, NullDataException{
         System.out.println("returning all courses data");
         ArrayList<Course> courseArrayList = courseList.getAllCoursesRecords();
-        if(courseArrayList == null) throw new NullDataException("Course data isn't initialized.");
+        if(courseArrayList == null) throw new NullDataException("Objects.Course data isn't initialized.");
         return courseArrayList;
+    }
+
+    @Override
+    public Course getCourseById(String courseId) throws RemoteException{
+        return null;
+    }
+
+    @Override
+    public ArrayList<Course> getCoursesByName(String name) throws RemoteException, NullDataException{
+        return null;
+    }
+
+    @Override
+    public ArrayList<Course> getCoursesByProfessor(String professor) throws RemoteException, NullDataException{
+        return null;
+    }
+
+    @Override
+    public ArrayList<Course> getCoursesByPreCourseId(String preCourseId) throws RemoteException, NullDataException{
+        return null;
+    }
+
+    @Override
+    public ArrayList<Course> getCoursesBySemester(String semester) throws RemoteException, NullDataException{
+        return null;
     }
 
     @Override
     public boolean addCourse(Course course) throws RemoteException{
         courseList.addCourseRecord(course);
-        System.out.println("Course added.\n>>" + course);
+        System.out.println("Objects.Course added.\n>>" + course);
         return true;
     }
 
     @Override
-    public boolean deleteCourse(String course) throws RemoteException{
-        boolean result = courseList.deleteCourseRecord(course);
-        System.out.println((result? "The Course has been successfully deleted.\n>>": "The Course is not found.\n >>")+course);
-        return result;
+    public boolean deleteCourseById(String courseId) throws RemoteException{
+        return false;
+    }
+
+    @Override
+    public ArrayList<Reservation> getReservationsByStudentId(String studentId) throws RemoteException, NullDataException{
+        return null;
+    }
+
+    @Override
+    public ArrayList<Reservation> getReservationsByCourseId(String courseId) throws RemoteException, NullDataException{
+        return null;
+    }
+
+    @Override
+    public Reservation getReservationByBothId(String courseId, String studentId) throws RemoteException, NullDataException{
+        return null;
+    }
+
+    @Override
+    public boolean updateCourseById(String courseId, Course newCourse) throws RemoteException{
+        return false;
     }
 
     @Override
@@ -124,15 +178,16 @@ public class Data extends UnicastRemoteObject implements DataIF {
         return false;
     }
 
+
     @Override
-    public ArrayList<Reservation> getReservations() throws RemoteException{
-        ArrayList<Reservation> reservations = new ArrayList<>();
-        return null;
+    public boolean makeReservation(String studentId, String courseId) throws RemoteException{
+
+        return false;
     }
 
     @Override
-    public void makeReservation(String studentId, String courseId) throws RemoteException{
-
+    public boolean deleteReservation(String courseId, String studentId) throws RemoteException{
+        return false;
     }
 
 }

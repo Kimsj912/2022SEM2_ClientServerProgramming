@@ -15,7 +15,6 @@ public class InputValue {
     }
 
     public static String getInputString(String message, boolean canBack) throws IOException, ServiceTerminateException, EmptyInputException {
-        br = new BufferedReader(new InputStreamReader(System.in));
         if (message != null) System.out.println(message);
         String input = br.readLine();
         if (input.trim().equals("")) throw new EmptyInputException();
