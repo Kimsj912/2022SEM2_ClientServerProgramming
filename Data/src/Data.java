@@ -1,3 +1,4 @@
+import Exceptions.AlreadyExsitException;
 import Exceptions.NullDataException;
 
 import java.io.IOException;
@@ -28,7 +29,6 @@ public class Data extends UnicastRemoteObject implements DataIF {
     }
 
     public static void main(String[] args){
-        // RMI로 멀티프로세스가 되도록 짜야함.
         try{
             Data data = new Data();
             data.association();
@@ -149,7 +149,7 @@ public class Data extends UnicastRemoteObject implements DataIF {
         return reservationData.getReservationByBothId(courseId, studentId);
     }
     @Override
-    public boolean makeReservation(String studentId, String courseId) throws RemoteException, NullDataException{
+    public boolean makeReservation(String studentId, String courseId) throws RemoteException, NullDataException, AlreadyExsitException{
         return reservationData.makeReservation(studentId, courseId);
     }
 

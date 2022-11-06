@@ -17,9 +17,7 @@ public class CourseData implements Serializable, CourseIF {
 
     public ArrayList<Course> getAllCoursesData() throws RemoteException, NullDataException{
         System.out.println("returning all courses data");
-        ArrayList<Course> courseArrayList = courseList.getAllCoursesRecords();
-        if (courseArrayList == null) throw new NullDataException("Course data isn't initialized.");
-        return courseArrayList;
+        return courseList;
     }
 
     @Override
@@ -65,7 +63,7 @@ public class CourseData implements Serializable, CourseIF {
     @Override
     public boolean addCourse(Course course) throws RemoteException{
         System.out.println("Add Course requested. (Course : " + course + ")");
-        boolean result = courseList.addCourse(course);
+        boolean result = courseList.add(course);
         System.out.println((result) ? ("Success to add Course \n>>" + course) : ("Failed to add Course\n>>" + course));
         return result;
     }

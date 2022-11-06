@@ -1,5 +1,6 @@
 package ServerClientIF;
 
+import Exceptions.AlreadyExsitException;
 import Exceptions.NullDataException;
 import Objects.Reservation;
 
@@ -14,7 +15,7 @@ public interface ReservationIF extends Remote {
     Reservation getReservationByBothId(String courseId, String studentId) throws RemoteException, NullDataException;
 
     // CREATE
-    boolean makeReservation(String courseId, String studentId) throws RemoteException, NullDataException;
+    boolean makeReservation(String courseId, String studentId) throws RemoteException, NullDataException, AlreadyExsitException;
 
     // DELETE
     boolean deleteReservation(String courseId, String studentId) throws RemoteException, NullDataException;

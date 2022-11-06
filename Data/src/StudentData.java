@@ -26,9 +26,7 @@ public class StudentData implements Serializable, StudentIF {
     @Override
     public ArrayList<Student> getAllStudentData() throws RemoteException, NullDataException{
         System.out.println("returning all student data");
-        ArrayList<Student> studentArrayList = studentList.getAllStudentRecords();
-        if (studentArrayList == null) throw new NullDataException("Student data isn't initialized.");
-        return studentArrayList;
+        return studentList;
     }
 
     @Override
@@ -67,7 +65,7 @@ public class StudentData implements Serializable, StudentIF {
     @Override
     public boolean addStudent(Student student) throws RemoteException{
         System.out.println("Add Student requested.(Student : " + student + ")");
-        boolean result = studentList.addStudent(student);
+        boolean result = studentList.add(student);
         System.out.println((result) ? ("Student is added.\n>>" + student) : ("Student is not added.\n>>" + student));
         return result;
     }

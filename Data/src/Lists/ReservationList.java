@@ -1,44 +1,37 @@
 package Lists;
 
+import Exceptions.AlreadyExsitException;
 import Objects.Reservation;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ReservationList extends ArrayList<Reservation> {
+public class ReservationList extends CommonList<Reservation> {
 
-    public ReservationList(String name) throws IOException{
-        BufferedReader fileObj = new BufferedReader(new FileReader(name));
-        while (fileObj.ready()) {
-            String info = fileObj.readLine();
+    public ReservationList(String fileName) throws IOException{
+        super(fileName);
+        while (objFile.ready()) {
+            String info = objFile.readLine();
             if (!info.equals("")) {
                 this.add(new Reservation(info));
             }
         }
-        fileObj.close();
-
+        objFile.close();
     }
 
-    public boolean makeReservation(Reservation reservation){
+    public boolean makeReservation(Reservation reservation) throws AlreadyExsitException{
         for(Reservation res: this){
             if(res.getCourseId().equals(reservation.getCourseId()) && res.getStudentId().equals(reservation.getStudentId())){
-                System.out.println("new Reservation is rejected(Already exist)");
-                return false;
+                throw new AlreadyExsitException("new Reservation is rejected(Already exist)");
             }
         }
-        System.out.println("new reservation added (courseId: " + reservation.getCourseId() + ", studentId: " + reservation.getStudentId() + ")");
-        this.add(reservation);
-        return true;
+        return this.add(reservation);
     }
 
     public ArrayList<Reservation> getReservationListByStudentId(String studentId){
-        System.out.println("get Reservation is requested.(studentId: " + studentId +")");
         ArrayList<Reservation> reservationList = new ArrayList<>();
         for(int i = 0; i < this.size(); i++){
             if(this.get(i).getStudentId().equals(studentId)){
-                System.out.println("Reservation is found.(courseId: " + this.get(i).getCourseId() + ", studentId: " + this.get(i).getStudentId() + ")");
                 reservationList.add(this.get(i));
             }
         }
@@ -46,11 +39,9 @@ public class ReservationList extends ArrayList<Reservation> {
     }
 
     public ArrayList<Reservation> getReservationListByCourseId(String courseId){
-        System.out.println("get Reservation is requested.(courseId: " + courseId +")");
         ArrayList<Reservation> reservationList = new ArrayList<>();
         for(int i = 0; i < this.size(); i++){
             if(this.get(i).getCourseId().equals(courseId)){
-                System.out.println("Reservation is found.(courseId: " + this.get(i).getCourseId() + ", studentId: " + this.get(i).getStudentId() + ")");
                 reservationList.add(this.get(i));
             }
         }
@@ -58,10 +49,8 @@ public class ReservationList extends ArrayList<Reservation> {
     }
 
     public Reservation getReservationListByBothId(String courseId, String studentId){
-        System.out.println("get Reservation is requested.(courseId: " + courseId + " studentId: " + studentId+")");
         for(int i = 0; i < this.size(); i++){
             if(this.get(i).getCourseId().equals(courseId) && this.get(i).getStudentId().equals(studentId)){
-                System.out.println("Reservation is found.(courseId: " + this.get(i).getCourseId() + ", studentId: " + this.get(i).getStudentId() + ")");
                 return this.get(i);
             }
         }
@@ -69,14 +58,13 @@ public class ReservationList extends ArrayList<Reservation> {
     }
 
     public boolean deleteReservation(String courseId, String studentId){
+        boolean result = false;
         for(Reservation reservation: this){
             if(reservation.getCourseId().equals(courseId) && reservation.getStudentId().equals(studentId)){
-                this.remove(reservation);
-                System.out.println("reservation deleted (courseId: " + courseId + ", studentId: " + studentId + ")");
-                return true;
+                result = this.remove(reservation);
+                break;
             }
         }
-        System.out.println("reservation not found (courseId: " + courseId + ", studentId: " + studentId + ")");
-        return false;
+        return result;
     }
 }
