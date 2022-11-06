@@ -1,4 +1,3 @@
-import DataServerIF.CourseIF;
 import Exceptions.NullDataException;
 import Lists.CourseList;
 import Objects.Course;
@@ -6,9 +5,10 @@ import Objects.Course;
 import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class CourseData implements Serializable, CourseIF {
+public class CourseData extends UnicastRemoteObject implements Serializable, DSCourseIF {
     private final CourseList courseList;
 
     public CourseData() throws IOException{
@@ -17,7 +17,7 @@ public class CourseData implements Serializable, CourseIF {
 
     public ArrayList<Course> getAllCoursesData() throws RemoteException, NullDataException{
         System.out.println("returning all courses data");
-        return courseList;
+        return courseList.getAllCourses();
     }
 
     @Override
@@ -58,6 +58,14 @@ public class CourseData implements Serializable, CourseIF {
         ArrayList<Course> courseArrayList = courseList.getCourseBySemester(semester);
         System.out.println((courseArrayList.isEmpty()) ? ("Course is not found.\n>>" + semester) : ("Courses are found.\n>>" + courseArrayList));
         return courseArrayList;
+    }
+
+    @Override
+    public boolean isCourseIdExist(String courseId) throws RemoteException{
+        System.out.println("Is CourseId Exist requested.(CourseId : " + courseId + ")");
+        boolean isExist = courseList.getCourseById(courseId) != null;
+        System.out.println((isExist) ? ("CourseId is exist.\n>>" + courseId) : ("CourseId is not exist.\n>>" + courseId));
+        return isExist;
     }
 
     @Override

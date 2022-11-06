@@ -9,7 +9,7 @@ public enum EStudent {
     // Enter Item
     ENTER_STUDENT_ID("Enter student ID.\n>> "),
     ENTER_STUDENT_NAME("Enter student name.\n>> "),
-    ENTER_STUDENT_MAJOR("Enter student Major.\n>> "),
+    ENTER_STUDENT_MAJOR("Enter student Major among theme."+ Arrays.toString(EMajor.getMajorAbbrList())+"\n>> "),
     ENTER_COMPLETED_COURSE_MULTI("Enter completed course ID.(separated by comma)\n>> "),
 
     // Situation (CRUD)

@@ -6,7 +6,7 @@ import Objects.Student;
 import java.io.*;
 import java.util.ArrayList;
 
-public class CommonList<T extends IObject> extends ArrayList<T> {
+public class CommonList<T extends IObject> extends ArrayList<T>  implements Serializable {
     protected String fileName;
     protected BufferedReader objFile;
 
@@ -18,7 +18,7 @@ public class CommonList<T extends IObject> extends ArrayList<T> {
     protected void writeToFile(){
         try {
             BufferedWriter fileObj = new BufferedWriter(new FileWriter(fileName));
-            for (IObject obj : this) {
+            for (T obj : this) {
                 fileObj.write(obj.toString());
                 fileObj.newLine();
             }

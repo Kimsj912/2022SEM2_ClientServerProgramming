@@ -34,7 +34,7 @@ public class Student implements IObject, Serializable{
     public Student(String line) {
         StringTokenizer stringTokenizer = new StringTokenizer(line);
     	this.studentId = stringTokenizer.nextToken();
-    	this.name = stringTokenizer.nextToken();
+    	this.name = stringTokenizer.nextToken() + " " + stringTokenizer.nextToken();
     	this.major = stringTokenizer.nextToken();
     	this.completedCourses = new ArrayList<String>();
     	while (stringTokenizer.hasMoreTokens()) {

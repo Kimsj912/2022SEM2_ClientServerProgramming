@@ -1,4 +1,3 @@
-import DataServerIF.StudentIF;
 import Exceptions.NullDataException;
 import Lists.StudentList;
 import Objects.Course;
@@ -7,9 +6,10 @@ import Objects.Student;
 import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class StudentData implements Serializable, StudentIF {
+public class StudentData extends UnicastRemoteObject implements Serializable, DSStudentIF {
     // Attributes
     private final StudentList studentList;
 
@@ -24,10 +24,13 @@ public class StudentData implements Serializable, StudentIF {
     }
 
     @Override
-    public ArrayList<Student> getAllStudentData() throws RemoteException, NullDataException{
+    public ArrayList<Student> getAllStudents() throws RemoteException, NullDataException{
         System.out.println("returning all student data");
-        return studentList;
+        ArrayList<Student> studentArrayList = studentList.getStudentList();
+        System.out.println((studentArrayList.isEmpty()) ? ("Student is not found.") : ("Students are found.\n>>" + studentArrayList));
+        return studentArrayList;
     }
+
 
     @Override
     public Student getStudentById(String id) throws RemoteException{
@@ -83,6 +86,14 @@ public class StudentData implements Serializable, StudentIF {
         System.out.println("Update Student requested.(StudentId : " + studentId + " -> " + newStudent + ")");
         boolean result = studentList.updateStudentById(studentId, newStudent);
         System.out.println((result) ? ("Student is updated.\n>>" + studentId + " -> " + newStudent) : ("Student is not updated.\n>>" + studentId + " -> " + newStudent));
+        return result;
+    }
+
+    @Override
+    public boolean isStudentIdExist(String studentId) throws RemoteException{
+        System.out.println("Is StudentId Exist requested.(StudentId : " + studentId + ")");
+        boolean result = studentList.getStudentById(studentId) != null;
+        System.out.println((result) ? ("StudentId is exist.\n>>" + studentId) : ("StudentId is not exist.\n>>" + studentId));
         return result;
     }
 }

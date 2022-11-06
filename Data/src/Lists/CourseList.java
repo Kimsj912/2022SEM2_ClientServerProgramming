@@ -1,13 +1,11 @@
 package Lists;
 
-import Exceptions.NullDataException;
 import Objects.Course;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class CourseList extends CommonList<Course>{
+public class CourseList extends CommonList<Course> implements Serializable{
 
 	public CourseList(String fileName) throws IOException {
 		super(fileName);
@@ -18,6 +16,10 @@ public class CourseList extends CommonList<Course>{
 			}
 		}
 		objFile.close();
+	}
+
+	public ArrayList<Course> getAllCourses(){
+		return new ArrayList<>(this);
 	}
 
 	public Course getCourseById(String courseId) {
@@ -88,4 +90,5 @@ public class CourseList extends CommonList<Course>{
 		}
 		return result;
 	}
+
 }

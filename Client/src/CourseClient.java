@@ -1,8 +1,6 @@
 import Exceptions.EmptyInputException;
 import Exceptions.NullDataException;
 import Exceptions.ServiceTerminateException;
-import MenuScripts.EStudent;
-import ServerClientIF.CourseIF;
 import MenuScripts.ECourse;
 import MethodEnums.Course.SGetCourseMenu;
 import Objects.Course;
@@ -15,20 +13,26 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class CourseClient extends CommonClient {
-    private final CourseIF server;
-    private final InputCourseValue inputCourseValue = new InputCourseValue();
+    // Server Interface
+    private final CSCourseIF server;
+    // Input Class
+    private final InputCourseValue inputCourseValue;
+    // Sub Class
     private final GetCourseClient getCourseClient;
 
-    public CourseClient(ServerIF server){
+    // Constructor
+    public CourseClient(CSCourseIF server){
         this.server = server;
         this.getCourseClient = new GetCourseClient(server);
+        this.inputCourseValue = new InputCourseValue();
     }
 
     public void getAllCourses() throws RemoteException, NullDataException {
         try{
             ArrayList<Course> courseList = server.getAllCourses();
             Printer.printList(courseList, Course.class);
-        } catch (RemoteException | NullDataException e){
+        } catch ( NullDataException e){
+            e.printStackTrace();
             System.out.println(ECourse.GET_FAIL.getMessage());
         }
     }
@@ -48,10 +52,14 @@ public class CourseClient extends CommonClient {
             String courseProfName = inputCourseValue.inputCourseProfNameWithValidation();
             String courseName = inputCourseValue.inputCourseNameWithValidation();
             String courseSemester = inputCourseValue.inputCourseSemesterWithValidation();
-            ArrayList<String> coursePreCourse = inputCourseValue.inputCoursePreCourseWithValidation();
-            if(!server.isMultiCourseIdExist(coursePreCourse)){
-                System.out.println(ECourse.ADD_FAIL_PRE_COURSE_IS_NOT_EXIST.getMessage());
-                return;
+            ArrayList<String> coursePreCourse = null;
+            while(true){
+                coursePreCourse = inputCourseValue.inputCoursePreCourseWithValidation();
+                if(!server.isMultiCourseIdExist(coursePreCourse)){
+                    System.out.println(ECourse.ADD_FAIL_PRE_COURSE_IS_NOT_EXIST.getMessage());
+                    continue;
+                }
+                break;
             }
             // Create Course Object
             Course course = new Course(courseId, courseProfName, courseName, courseSemester, coursePreCourse);
@@ -88,13 +96,13 @@ public class CourseClient extends CommonClient {
         }
 
         System.out.println("Input new course information. if you don't want to change, just press enter.");
-        try{
-            String courseName = inputCourseValue.inputCourseNameWithValidation();
-            course.setName(courseName);
-        } catch (EmptyInputException ignored){}
         try {
             String courseProfessor = inputCourseValue.inputCourseProfNameWithValidation();
             course.setProfessor(courseProfessor);
+        } catch (EmptyInputException ignored){}
+        try{
+            String courseName = inputCourseValue.inputCourseNameWithValidation();
+            course.setName(courseName);
         } catch (EmptyInputException ignored){}
         try {
             String courseSemester = inputCourseValue.inputCourseSemesterWithValidation();

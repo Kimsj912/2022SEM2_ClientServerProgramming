@@ -23,7 +23,7 @@ public class CommonClient {
 
 
     protected void invokeMethod(Class<?> invokeClass, String name, Object obj)
-            throws IOException, ServiceTerminateException, EmptyInputException{
+            throws IOException{
         try {
             invokeClass.getMethod(name).invoke(obj);
         } catch (IllegalAccessException | IllegalArgumentException | NoSuchMethodException |

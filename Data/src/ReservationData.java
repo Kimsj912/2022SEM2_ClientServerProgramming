@@ -1,4 +1,3 @@
-import DataServerIF.ReservationIF;
 import Exceptions.AlreadyExsitException;
 import Exceptions.NullDataException;
 import Lists.ReservationList;
@@ -7,9 +6,10 @@ import Objects.Reservation;
 import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class ReservationData implements Serializable, ReservationIF {
+public class ReservationData extends UnicastRemoteObject implements Serializable, DSReservationIF {
     // Attributes
     private final ReservationList reservationList;
     // Associations
@@ -57,7 +57,7 @@ public class ReservationData implements Serializable, ReservationIF {
         System.out.println("Make Reservation requested.(CourseId : " + courseId + ", StudentId : " + studentId + ")");
         if(courseData.getCourseById(courseId) == null) throw new NullDataException("Course is not found.");
         if(studentData.getStudentById(studentId) == null) throw new NullDataException("Student is not found.");
-        Reservation reservation = new Reservation(studentId, courseId);
+        Reservation reservation = new Reservation(courseId, studentId);
         boolean result = reservationList.makeReservation(reservation);
         System.out.println((result) ? ("Reservation is made.\n>>" + reservation) : ("Reservation is not made.\n>>" + reservation));
         return result;

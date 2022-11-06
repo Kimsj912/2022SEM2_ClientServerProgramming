@@ -8,7 +8,6 @@ import Objects.Student;
 import Utils.Input.InputStudentValue;
 import Utils.Print.Printer;
 import com.sun.media.sound.InvalidDataException;
-import sun.invoke.empty.Empty;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -16,15 +15,23 @@ import java.util.ArrayList;
 
 
 public class StudentClient extends CommonClient {
-
-    private final ServerIF server;
-    private final GetStudentClient getStudentClient;
+    // Server Interface
+    private final CSStudentIF server;
+    private CSCourseIF courseServer;
+    // Input Class
     private final InputStudentValue inputStudentValue;
+    // Sub Class
+    private final GetStudentClient getStudentClient;
 
-    public StudentClient(ServerIF server){
+    // Constructor
+    public StudentClient(CSStudentIF server){
         this.server = server;
         this.getStudentClient = new GetStudentClient(server);
         this.inputStudentValue = new InputStudentValue();
+    }
+
+    public void initialize(CSCourseIF courseServer){
+        this.courseServer = courseServer;
     }
 
 
@@ -96,7 +103,7 @@ public class StudentClient extends CommonClient {
         try {
             do{
                 ArrayList<String> completedCourses = inputStudentValue.inputStudentCompletedCourseWithValidation();
-                if(!server.isMultiCourseIdExist(completedCourses)){
+                if(!courseServer.isMultiCourseIdExist(completedCourses)){
                     System.out.println(EStudent.UPDATE_FAIL_INPUT_COMPLETED_COURSE_IS_NOT_EXIST.getMessage());
                     continue;
                 }

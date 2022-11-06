@@ -5,3 +5,4 @@
 17653 Kim Managing_Software_Development 2022-01
 17654 Ahn Analysis_of_Software_Artifacts 2022-01 17651
 17655 Lee Architectures_of_Software_Systems 2022-01 12345 17651
+19999 KIM Aristotle 2022-01

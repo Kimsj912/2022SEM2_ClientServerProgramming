@@ -1,7 +1,9 @@
 package Exceptions;
 
 
-public class NullDataException extends Exception{
+import java.io.Serializable;
+
+public class NullDataException extends Exception implements Serializable {
     public NullDataException(String message){
         super(message);
     }

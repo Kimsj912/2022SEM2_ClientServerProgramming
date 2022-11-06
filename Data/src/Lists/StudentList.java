@@ -24,6 +24,10 @@ public class StudentList extends CommonList<Student> {
 	}
 
 
+	public ArrayList<Student> getStudentList(){
+		return new ArrayList<>(this);
+	}
+
 	public Student getStudentById(String id){
 		for (Student student : this) {
 			if (student.getStudentId().equals(id)) return student;
@@ -85,4 +89,5 @@ public class StudentList extends CommonList<Student> {
 		}
 		return result;
 	}
+
 }

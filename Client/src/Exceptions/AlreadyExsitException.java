@@ -1,6 +1,8 @@
 package Exceptions;
 
-public class AlreadyExsitException extends Exception{
+import java.io.Serializable;
+
+public class AlreadyExsitException extends Exception implements Serializable {
     public AlreadyExsitException(){
         super("Already Exist.");
     }

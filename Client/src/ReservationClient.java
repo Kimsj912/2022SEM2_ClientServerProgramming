@@ -1,31 +1,24 @@
+import Exceptions.AlreadyExsitException;
 import Exceptions.EmptyInputException;
 import Exceptions.NullDataException;
 import Exceptions.ServiceTerminateException;
-import ServerClientIF.ReservationIF;
-import MenuScripts.ECourse;
 import MenuScripts.EReservation;
-import MenuScripts.EStudent;
 import MethodEnums.Reservation.SGetReservationMenu;
 import Objects.Reservation;
 import Utils.Input.InputCourseValue;
 import Utils.Input.InputStudentValue;
-import Utils.Input.InputValue;
 import Utils.Print.Printer;
-import Utils.Validator.CourseValidator;
-import Utils.Validator.StudentValidator;
-import com.sun.media.sound.InvalidDataException;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 // Validator 까지는 에러만 던지지 trycatch를 하지 않는다.
 public class ReservationClient extends CommonClient{
-    private final ReservationIF server;
+    private final CSReservationIF server;
     private final InputCourseValue inputCourseValue;
     private final InputStudentValue inputStudentValue;
 
-    public ReservationClient(ServerIF server){
-
+    public ReservationClient(CSReservationIF server){
         this.server = server;
         this.inputCourseValue = new InputCourseValue();
         this.inputStudentValue = new InputStudentValue();
@@ -73,7 +66,7 @@ public class ReservationClient extends CommonClient{
             if(server.makeReservation(courseId, studentId)){
                 System.out.println(EReservation.ADD_SUCCESS.getMessage());
             } else System.out.println(EReservation.ADD_FAIL.getMessage());
-        } catch (NullDataException e){
+        } catch (NullDataException | AlreadyExsitException e){
             System.out.println(e.getMessage());
         } catch (EmptyInputException ignored){}
     }

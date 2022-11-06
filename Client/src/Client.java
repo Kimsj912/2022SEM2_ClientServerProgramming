@@ -14,33 +14,31 @@ import java.rmi.RemoteException;
 
 
 public class Client extends CommonClient {
-    private static final String serverName = "Server";
-    protected static ServerIF server;
-
-    private String clientId;
-    private final StudentClient studentClient;
-    private final CourseClient courseClient;
-    private final ReservationClient reservationClient;
+    private StudentClient studentClient;
+    private CourseClient courseClient;
+    private ReservationClient reservationClient;
 
     public static void main(String[] args) throws IOException, NotBoundException, ServiceTerminateException, EmptyInputException{
         Client client = new Client();
         client.run();
     }
 
-    public Client () throws IOException, NotBoundException, ServiceTerminateException, EmptyInputException{
-        // Login Token °úÁ¤
+    public Client () throws IOException, NotBoundException {
         try{
-            server = (ServerIF) Naming.lookup(serverName);
-            clientId = InputValue.getInputString("Enter username: ", false);
-            server.addConnection(clientId);
+            CSCourseIF courseServer = (CSCourseIF) Naming.lookup("CourseServer");
+            CSStudentIF studentServer = (CSStudentIF) Naming.lookup("StudentServer");
+            CSReservationIF reservationServer = (CSReservationIF) Naming.lookup("ReservationServer");
+
+            this.courseClient = new CourseClient(courseServer);
+            this.studentClient = new StudentClient(studentServer);
+            this.reservationClient = new ReservationClient(reservationServer);
+
+            this.studentClient.initialize(courseServer);
         } catch (RemoteException e){
+            e.printStackTrace();
             System.out.println("Server is not running");
             System.exit(0);
         }
-
-        this.studentClient = new StudentClient(server);
-        this.courseClient = new CourseClient(server);
-        this.reservationClient = new ReservationClient(server);
     }
 
     public void run() throws IOException, ServiceTerminateException, EmptyInputException{
@@ -51,7 +49,6 @@ public class Client extends CommonClient {
         }
     }
 
-    // ------------------ Main Menu ------------------
     public void selectCourse() throws IOException, ServiceTerminateException, EmptyInputException{
         selectMenu(SSelectCourse.class, "Select Course Menu", CourseClient.class, this.courseClient);
     }
@@ -65,12 +62,8 @@ public class Client extends CommonClient {
     }
 
     public void exit() throws RemoteException{
-        if (server.deleteConnection(clientId)) {
-            System.out.println("Good Bye!");
-            System.exit(0);
-        } else {
-            System.out.println("Error: Connection is not deleted");
-        }
+        System.out.println("Good Bye!");
+        System.exit(0);
     }
 
 }

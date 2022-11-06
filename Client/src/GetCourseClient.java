@@ -4,7 +4,6 @@ import Exceptions.ServiceTerminateException;
 import MenuScripts.ECourse;
 import Objects.Course;
 import Utils.Input.InputCourseValue;
-import Utils.Input.InputValue;
 import Utils.Print.Printer;
 import Utils.Validator.CourseValidator;
 import com.sun.media.sound.InvalidDataException;
@@ -14,10 +13,12 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class GetCourseClient extends CommonClient {
+    // Server Interface
+    private final CSCourseIF server;
+    // Input Class
     private final InputCourseValue inputCourseValue;
-    private final ServerIF server;
 
-    public GetCourseClient(ServerIF server) {
+    public GetCourseClient(CSCourseIF server) {
         this.server = server;
         inputCourseValue = new InputCourseValue();
     }

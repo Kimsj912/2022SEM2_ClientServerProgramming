@@ -1,6 +1,7 @@
 package Objects;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Reservation implements IObject, Serializable {
@@ -23,7 +24,7 @@ public class Reservation implements IObject, Serializable {
     public Reservation(String courseId, String studentId){
         this.courseId = courseId;
         this.studentId = studentId;
-        this.reservationDate = new Date().toString();
+        this.reservationDate = new Date().toInstant().toString();
     }
 
     // Constructor : For Decoding a reservation

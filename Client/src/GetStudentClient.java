@@ -1,7 +1,6 @@
 import Exceptions.EmptyInputException;
 import Exceptions.NullDataException;
 import Exceptions.ServiceTerminateException;
-import MenuScripts.ECourse;
 import MenuScripts.EStudent;
 import Objects.Student;
 import Utils.Input.InputCourseValue;
@@ -16,9 +15,9 @@ import java.util.ArrayList;
 public class GetStudentClient extends CommonClient {
     private final InputStudentValue inputStudentValue;
     private final InputCourseValue inputCourseValue;
-    private final ServerIF server;
+    private final CSStudentIF server;
 
-    public GetStudentClient(ServerIF server){
+    public GetStudentClient(CSStudentIF server){
         this.server = server;
         inputStudentValue = new InputStudentValue();
         inputCourseValue = new InputCourseValue();

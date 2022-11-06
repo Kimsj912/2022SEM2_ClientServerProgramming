@@ -1,7 +1,9 @@
 package Exceptions;
 
 
-public class EmptyInputException extends Exception{
+import java.io.Serializable;
+
+public class EmptyInputException extends Exception implements Serializable {
     public EmptyInputException(){
         super("Nothing was entered.");
     }
