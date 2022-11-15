@@ -1,8 +1,8 @@
-package MethodEnums.Reservation;
+package Menus.Reservation;
 
-import MethodEnums.IMenuInterface;
+import Menus.IMenuInterface;
 
-public enum SSelectReservation implements IMenuInterface {
+public enum MSelectReservationMenu implements IMenuInterface {
     GET_RESERVATION("getReservationList", "get reservation with variable ways"),
     MAKE_RESERVATION("makeReservation", "add course reservation"),
     DELETE_RESERVATION("deleteReservation", "delete course reservation");
@@ -18,7 +18,7 @@ public enum SSelectReservation implements IMenuInterface {
     public void setDescription(String description){this.description = description;}
 
     // Constructor
-    SSelectReservation(String method, String description){
+    MSelectReservationMenu(String method, String description){
         this.method = method;
         this.description = description;
     }

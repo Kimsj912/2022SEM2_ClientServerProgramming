@@ -1,4 +1,4 @@
-import Exceptions.AlreadyExsitException;
+import Exceptions.AlreadyExistException;
 import Exceptions.NullDataException;
 import Objects.Course;
 import Objects.Reservation;
@@ -43,7 +43,7 @@ public class ReservationServer extends UnicastRemoteObject implements Serializab
     }
 
     @Override
-    public boolean makeReservation(String courseId, String studentId) throws RemoteException, NullDataException, AlreadyExsitException{
+    public boolean makeReservation(String courseId, String studentId) throws RemoteException, NullDataException, AlreadyExistException{
         System.out.println("make reservation : " + courseId + ", " + studentId);
         Student student = studentServer.getData().getStudentById(studentId);
         if (student == null) throw new NullDataException("Student is not exist");

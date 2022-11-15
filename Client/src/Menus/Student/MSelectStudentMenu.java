@@ -1,8 +1,8 @@
-package MethodEnums.Student;
+package Menus.Student;
 
-import MethodEnums.IMenuInterface;
+import Menus.IMenuInterface;
 
-public enum SSelectStudent implements IMenuInterface {
+public enum MSelectStudentMenu implements IMenuInterface {
     GET_ALL_COURSES("getAllStudents", "get all students"),
     GET_COURSE("getStudent", "get student with variable ways"),
     ADD_COURSE("addStudent", "add student"),
@@ -21,7 +21,7 @@ public enum SSelectStudent implements IMenuInterface {
     public void setDescription(String description){this.description = description;}
 
     // Constructor
-    SSelectStudent(String method, String description){
+    MSelectStudentMenu(String method, String description){
         this.method = method;
         this.description = description;
     }

@@ -1,6 +1,6 @@
-package MethodEnums;
+package Menus;
 
-public enum EMainMenu implements IMenuInterface {
+public enum MMainMenu implements IMenuInterface {
     SELECT_COURSE("selectCourse", "View or manipulate the course"),
     SELECT_STUDENT("selectStudent", "View or manipulate the student"),
     SELECT_RESERVATION("selectReservation", "View or manipulate the course reservation"),
@@ -17,7 +17,7 @@ public enum EMainMenu implements IMenuInterface {
     public void setDescription(String description){this.description = description;}
 
 
-    EMainMenu(String method, String description){
+    MMainMenu(String method, String description){
         this.method = method;
         this.description = description;
     }

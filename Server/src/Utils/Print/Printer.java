@@ -3,7 +3,7 @@ package Utils.Print;
 import Exceptions.EmptyInputException;
 import Exceptions.NullDataException;
 import Exceptions.ServiceTerminateException;
-import MethodEnums.IMenuInterface;
+import Menus.IMenuInterface;
 import Objects.IObject;
 import Utils.Input.InputValue;
 

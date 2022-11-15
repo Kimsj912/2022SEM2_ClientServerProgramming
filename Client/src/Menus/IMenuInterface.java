@@ -1,4 +1,4 @@
-package MethodEnums;
+package Menus;
 
 public interface IMenuInterface {
     public String getMethod();

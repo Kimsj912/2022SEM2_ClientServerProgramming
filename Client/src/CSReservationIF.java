@@ -1,4 +1,4 @@
-import Exceptions.AlreadyExsitException;
+import Exceptions.AlreadyExistException;
 import Exceptions.NullDataException;
 import Objects.Reservation;
 
@@ -13,7 +13,7 @@ public interface CSReservationIF extends Remote, Serializable {
     ArrayList<Reservation> getReservationsByCourseId(String courseId) throws RemoteException, NullDataException;
     Reservation getReservationByBothId(String courseId, String studentId) throws RemoteException, NullDataException;
     // CREATE
-    boolean makeReservation(String courseId, String studentId) throws RemoteException, NullDataException, AlreadyExsitException;
+    boolean makeReservation(String courseId, String studentId) throws RemoteException, NullDataException, AlreadyExistException;
     // DELETE
     boolean deleteReservation(String courseId, String studentId) throws RemoteException, NullDataException;
 }

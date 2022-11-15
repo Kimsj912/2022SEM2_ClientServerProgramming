@@ -1,8 +1,8 @@
-package MethodEnums.Course;
+package Menus.Course;
 
-import MethodEnums.IMenuInterface;
+import Menus.IMenuInterface;
 
-public enum SGetCourseMenu implements IMenuInterface {
+public enum MGetCourseMenu implements IMenuInterface {
     GET_COURSE_BY_ID("getCourseById", "search course by course Id"),
     GET_COURSES_BY_NAME("getCoursesByName", "search course by course name"),
     GET_COURSES_BY_PROF("getCoursesByProfessor", "search course by course's Professor Name"),
@@ -19,7 +19,7 @@ public enum SGetCourseMenu implements IMenuInterface {
     public void setDescription(String description){this.description = description;}
 
     // Constructor
-    SGetCourseMenu(String method, String description){
+    MGetCourseMenu(String method, String description){
         this.method = method;
         this.description = description;
     }
