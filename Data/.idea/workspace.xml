@@ -5,32 +5,72 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75018fb4-a344-4f56-bfa0-ab4792bd84fd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Server/src/CourseServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/src/DSCourseIF.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/src/DSReservationIF.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/src/DSStudentIF.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/src/ReservationServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/src/StudentServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/CourseList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/ServerIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/ServerIF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/StudentList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/CommonClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/CommonClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/CourseClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/CourseClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Exceptions/AlreadyExsitException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Exceptions/AlreadyExsitException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Exceptions/EmptyInputException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Exceptions/EmptyInputException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Exceptions/InvalidInputException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Exceptions/InvalidInputException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Exceptions/NullDataException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Exceptions/NullDataException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Exceptions/ServerIsNotReadyException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Exceptions/ServerIsNotReadyException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Exceptions/ServerProcessErrorException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Exceptions/ServerProcessErrorException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/Exceptions/ServiceTerminateException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/Exceptions/ServiceTerminateException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/GetCourseClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/GetCourseClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/GetStudentClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/GetStudentClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/MenuScripts/EStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/MenuScripts/EStudent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/ReservationClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/ReservationClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/ServerClientIF/CourseIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/CSCourseIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/ServerClientIF/ReservationIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CSReservationIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/ServerClientIF/StudentIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/CSStudentIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/StudentClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/StudentClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CourseList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CourseList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Courses.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Courses.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reservations.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Reservations.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CourseData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CourseData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataIF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ServerIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServerIF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StudentList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StudentList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/CourseList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/CourseList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/DataIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/DataIF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/ServerIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/ServerIF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/StudentList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/StudentList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataIF.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataServerIF/CourseIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/DSCourseIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataServerIF/ReservationIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/DSReservationIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataServerIF/StudentIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DSStudentIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IMenuInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lists/CommonList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lists/CommonList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lists/CourseList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lists/CourseList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lists/StudentList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lists/StudentList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Objects/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Reservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ReservationData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ReservationData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ServerClientIF/CourseIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/CSCourseIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ServerClientIF/ReservationIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/CSReservationIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ServerClientIF/StudentIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/CSStudentIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ServerIF.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StudentData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StudentData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/DataIF.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/DataServerIF/CourseIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DSCourseIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/DataServerIF/ReservationIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DSReservationIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/DataServerIF/StudentIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/DSStudentIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Objects/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Objects/Reservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Objects/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Objects/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/ServerClientIF/CourseIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CSCourseIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/ServerClientIF/ReservationIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/CSReservationIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/ServerClientIF/StudentIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CSStudentIF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/ServerIF.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -47,10 +87,12 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/IntelliJJAVA/2022SEM2ClientServer/Data/src&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
@@ -58,12 +100,34 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\IntelliJJAVA\2022SEM2ClientServer\Data\src" />
+      <recent name="C:\IntelliJJAVA\2022SEM2ClientServer\Data" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\IntelliJJAVA\2022SEM2ClientServer\Data\src\Objects" />
       <recent name="C:\IntelliJJAVA\2022SEM2ClientServer\Data" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
+      <recent name="MethodEnums" />
+      <recent name="Utils.Validator" />
+      <recent name="Interfaces" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Data" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Data" />
+      <module name="Data" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Data" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -78,10 +142,31 @@
       <updated>1664712471219</updated>
       <workItem from="1664712472907" duration="3303000" />
       <workItem from="1664716424478" duration="5693000" />
+      <workItem from="1664780061279" duration="824000" />
+      <workItem from="1664785113220" duration="522000" />
+      <workItem from="1664943893601" duration="21000" />
+      <workItem from="1666369539992" duration="1811000" />
+      <workItem from="1666420599336" duration="2947000" />
+      <workItem from="1666587204415" duration="23000" />
+      <workItem from="1666587883666" duration="9888000" />
+      <workItem from="1666720353825" duration="1208000" />
+      <workItem from="1667702494053" duration="15337000" />
     </task>
+    <task id="LOCAL-00001" summary="Server Upgrade 전에 임시저장">
+      <created>1667708662596</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1667708662596</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Server Upgrade 전에 임시저장" />
+    <option name="LAST_COMMIT_MESSAGE" value="Server Upgrade 전에 임시저장" />
   </component>
 </project>
