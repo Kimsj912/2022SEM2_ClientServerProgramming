@@ -46,6 +46,15 @@ public class ClientInputMain {
 					eventBus.sendEvent(new Event(EventId.DeleteStudents, deleteStudent()));
 					printLogSend(EventId.DeleteStudents);
 					break;
+				case "6":
+					eventBus.sendEvent(new Event(EventId.DeleteCourses, deleteCourse()));
+					printLogSend(EventId.DeleteCourses);
+					break;
+				case "7":
+					eventBus.sendEvent(new Event(EventId.EnrollInCourse, enrollInCourse()));
+					printLogSend(EventId.EnrollInCourse);
+					done = true;
+					break;
 				case "0":
 					eventBus.sendEvent(new Event(EventId.QuitTheSystem, "Quit the system!!!"));
 					printLogSend(EventId.QuitTheSystem);
@@ -153,6 +162,32 @@ public class ClientInputMain {
 		return userInput;
 	}
 
+	private static String enrollInCourse() throws IOException {
+		String userInput = "";
+		boolean inputIsDone = false;
+
+		while (!inputIsDone) { // 클라이언트가 입력한 정보가 올바른지 다시 질문하고,
+			System.out.println("\nEnter student ID and press return (Ex. 20131234)>> ");
+			userInput = new BufferedReader(new InputStreamReader(System.in)).readLine().trim();
+			System.out.println("\nEnter course ID and press return (Ex. 12345)>> ");
+			userInput += " " + new BufferedReader(new InputStreamReader(System.in)).readLine().trim();
+			System.out.println("\nIs it correct information? (Y/N)");
+			System.out.println(userInput.replace(" ", " / courseID: ").startsWith("studentID: "));
+			String ans = new BufferedReader(new InputStreamReader(System.in)).readLine().trim().trim();
+			if (ans.equalsIgnoreCase("y")) { // 올바를 경우(y일 경우) InputIsDone을 true로 바꾼다.
+				inputIsDone = true;
+				break;
+			} else if (ans.equalsIgnoreCase("n")) { // 올바르지 않을 경우(n인 경우) 다시 입력하도록 한다.
+				System.out.println("\nType again...");
+				break;
+			} else {
+				System.out.println("\nTyped wrong answer");
+			}
+		}
+		System.out.println("\n ** Message \"" + userInput + "\" ...");
+		return userInput;
+	}
+
 	private static void writeMenu() {
 		System.out.println("1. List Students");
 		System.out.println("2. List Courses");
@@ -160,6 +195,7 @@ public class ClientInputMain {
 		System.out.println("4. Register a new Course");
 		System.out.println("5. Delete a new Student");
 		System.out.println("6. Delete a new Course");
+		System.out.println("7. Register a new Course for a Student");
 		System.out.println("0. Quit the system");
 		System.out.print("\n Choose No.: ");
 	}

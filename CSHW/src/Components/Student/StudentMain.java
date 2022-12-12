@@ -45,6 +45,9 @@ public class StudentMain {
 					printLogEvent("Delete", event);
 					eventBus.sendEvent(new Event(EventId.ClientOutput, deleteStudent(studentsList, event.getMessage())));
 					break;
+				case EnrollInCourse:
+					printLogEvent("Enroll", event);
+					eventBus.sendEvent(new Event(EventId.ListStudentsRegistered, isRegisteredStudents(studentsList, event.getMessage())));
 				case QuitTheSystem:
 					printLogEvent("Get", event);
 					eventBus.unRegister(componentId);
@@ -78,6 +81,15 @@ public class StudentMain {
 			return "This student is successfully deleted.";
 		} else
 			return "This student is not registered.";
+	}
+	private static String isRegisteredStudents(StudentComponent studentsList, String message) {
+		String returnString = "";
+		if (!studentsList.isRegisteredStudent(message.split(" ")[0])) {
+			returnString = "This student is not registered.";
+		} else {
+			returnString = "This student is registered.";
+		}
+		return returnString;
 	}
 	private static void printLogEvent(String comment, Event event) {
 		System.out.println(

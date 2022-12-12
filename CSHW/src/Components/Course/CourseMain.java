@@ -44,6 +44,10 @@ public class CourseMain {
 					printLogEvent("Delete", event);
 					eventBus.sendEvent(new Event(EventId.ClientOutput, deleteCourse(coursesList, event.getMessage())));
 					break;
+				case EnrollInCourse:
+					printLogEvent("Enroll", event);
+					eventBus.sendEvent(new Event(EventId.ListStudentsRegistered, isRegisteredCourse(coursesList, event.getMessage())));
+					break;
 				case QuitTheSystem:
 					eventBus.unRegister(componentId);
 					done = true;
@@ -74,6 +78,13 @@ public class CourseMain {
 		if (coursesList.isRegisteredCourse(course.courseId)) {
 			coursesList.vCourse.remove(course);
 			return "This course is successfully deleted.";
+		} else
+			return "This course is not registered.";
+	}
+	private static String isRegisteredCourse(CourseComponent coursesList, String message) {
+		Course course = new Course(message);
+		if (coursesList.isRegisteredCourse(course.courseId)) {
+			return "This course is registered.";
 		} else
 			return "This course is not registered.";
 	}
