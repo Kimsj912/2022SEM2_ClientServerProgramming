@@ -18,15 +18,9 @@ public class CourseServer extends UnicastRemoteObject implements Serializable, C
     @Override
     public ArrayList<Course> getAllCourses() throws RemoteException, NullDataException{
         System.out.println("returning course's all data");
-        try{
-            return data.getAllCoursesData();
-        } catch (RemoteException e){
-            e.printStackTrace();
-            throw e;
-        }
-//        ArrayList<Course> courseArrayList = data.getAllCoursesData();
-//        System.out.println(" >> Success (course : " + courseArrayList + ")");
-//        return courseArrayList;
+        ArrayList<Course> courseArrayList = data.getAllCoursesData();
+        System.out.println(" >> Success (course : " + courseArrayList + ")");
+        return courseArrayList;
     }
 
     @Override

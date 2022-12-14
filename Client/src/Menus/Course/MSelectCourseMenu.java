@@ -1,0 +1,27 @@
+package Menus.Course;
+
+import Menus.IMenuInterface;
+
+public enum MSelectCourseMenu implements IMenuInterface {
+    GET_ALL_COURSES("getAllCourses", "get all courses"),
+    GET_COURSE("getCourse", "get course with variable ways"),
+    ADD_COURSE("addCourse", "add course"),
+    DELETE_COURSE_BY_ID("deleteCourseById", "delete course by course Id"),
+    UPDATE_COURSE_BY_ID("updateCourseById", "update course search by course Id");
+
+    // Variables
+    private String method;
+    private String description;
+
+    // Getters & Setters
+    public String getMethod(){return method;}
+    public String getDescription(){return description;}
+    public void setMethod(String method){this.method = method;}
+    public void setDescription(String description){this.description = description;}
+
+    // Constructor
+    MSelectCourseMenu(String method, String description){
+        this.method = method;
+        this.description = description;
+    }
+}

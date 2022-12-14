@@ -1,4 +1,4 @@
-import Exceptions.AlreadyExsitException;
+import Exceptions.AlreadyExistException;
 import Exceptions.NullDataException;
 import Lists.ReservationList;
 import Objects.Reservation;
@@ -53,7 +53,7 @@ public class ReservationData extends UnicastRemoteObject implements Serializable
     }
 
     @Override
-    public boolean makeReservation(String courseId, String studentId) throws RemoteException, NullDataException, AlreadyExsitException{
+    public boolean makeReservation(String courseId, String studentId) throws RemoteException, NullDataException, AlreadyExistException{
         System.out.println("Make Reservation requested.(CourseId : " + courseId + ", StudentId : " + studentId + ")");
         if(courseData.getCourseById(courseId) == null) throw new NullDataException("Course is not found.");
         if(studentData.getStudentById(studentId) == null) throw new NullDataException("Student is not found.");

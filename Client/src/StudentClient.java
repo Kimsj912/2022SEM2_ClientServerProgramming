@@ -2,7 +2,7 @@ import Exceptions.EmptyInputException;
 import Exceptions.ServiceTerminateException;
 import Exceptions.NullDataException;
 import MenuScripts.ECourse;
-import MethodEnums.Student.SGetStudentMenu;
+import Menus.Student.MGetStudentMenu;
 import MenuScripts.EStudent;
 import Objects.Student;
 import Utils.Input.InputStudentValue;
@@ -46,7 +46,7 @@ public class StudentClient extends CommonClient {
     }
 
     public void getStudent() throws IOException, ServiceTerminateException, EmptyInputException{
-        selectMenu(SGetStudentMenu.class, "Student Menu", GetStudentClient.class, this.getStudentClient);
+        selectMenu(MGetStudentMenu.class, "Student Menu", GetStudentClient.class, this.getStudentClient);
     }
 
     public void addStudent() throws RemoteException, IOException, ServiceTerminateException{

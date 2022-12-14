@@ -1,6 +1,6 @@
 import Exceptions.EmptyInputException;
 import Exceptions.ServiceTerminateException;
-import MethodEnums.IMenuInterface;
+import Menus.IMenuInterface;
 import Utils.Print.Printer;
 
 import java.io.IOException;
@@ -23,11 +23,11 @@ public class CommonClient {
 
 
     protected void invokeMethod(Class<?> invokeClass, String name, Object obj)
-            throws IOException{
+            throws IOException, EmptyInputException, ServiceTerminateException{
         try {
             invokeClass.getMethod(name).invoke(obj);
         } catch (IllegalAccessException | IllegalArgumentException | NoSuchMethodException |
-                 SecurityException | InvocationTargetException e1){
+                 SecurityException | InvocationTargetException e1) {
             e1.printStackTrace();
         }
     }

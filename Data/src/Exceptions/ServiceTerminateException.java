@@ -1,7 +1,11 @@
 package Exceptions;
 
-public class ServiceTerminateException extends Throwable {
+import java.io.Serializable;
+
+public class ServiceTerminateException extends Exception implements Serializable {
     public ServiceTerminateException(){
-        super("Service Terminated.");
+        System.out.println("Terminate Service.");
+        System.exit(0);
     }
+    public ServiceTerminateException(String message){super(message);}
 }

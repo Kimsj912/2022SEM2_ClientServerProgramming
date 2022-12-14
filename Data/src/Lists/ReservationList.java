@@ -1,6 +1,6 @@
 package Lists;
 
-import Exceptions.AlreadyExsitException;
+import Exceptions.AlreadyExistException;
 import Objects.Reservation;
 
 import java.io.IOException;
@@ -19,10 +19,10 @@ public class ReservationList extends CommonList<Reservation> {
         objFile.close();
     }
 
-    public boolean makeReservation(Reservation reservation) throws AlreadyExsitException{
+    public boolean makeReservation(Reservation reservation) throws AlreadyExistException{
         for(Reservation res: this){
             if(res.getCourseId().equals(reservation.getCourseId()) && res.getStudentId().equals(reservation.getStudentId())){
-                throw new AlreadyExsitException("new Reservation is rejected(Already exist)");
+                throw new AlreadyExistException("new Reservation is rejected(Already exist)");
             }
         }
         return this.add(reservation);

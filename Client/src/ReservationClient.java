@@ -1,9 +1,9 @@
-import Exceptions.AlreadyExsitException;
+import Exceptions.AlreadyExistException;
 import Exceptions.EmptyInputException;
 import Exceptions.NullDataException;
 import Exceptions.ServiceTerminateException;
 import MenuScripts.EReservation;
-import MethodEnums.Reservation.SGetReservationMenu;
+import Menus.Reservation.MGetReservationMenu;
 import Objects.Reservation;
 import Utils.Input.InputCourseValue;
 import Utils.Input.InputStudentValue;
@@ -25,7 +25,7 @@ public class ReservationClient extends CommonClient{
     }
 
     public void getReservationList() throws IOException, ServiceTerminateException, EmptyInputException{
-        selectMenu(SGetReservationMenu.class, "Reservation Menu", this.getClass(), this);
+        selectMenu(MGetReservationMenu.class, "Reservation Menu", this.getClass(), this);
     }
 
     public void getReservationsByStudentId() throws IOException, ServiceTerminateException{
@@ -66,7 +66,7 @@ public class ReservationClient extends CommonClient{
             if(server.makeReservation(courseId, studentId)){
                 System.out.println(EReservation.ADD_SUCCESS.getMessage());
             } else System.out.println(EReservation.ADD_FAIL.getMessage());
-        } catch (NullDataException | AlreadyExsitException e){
+        } catch (NullDataException | AlreadyExistException e){
             System.out.println(e.getMessage());
         } catch (EmptyInputException ignored){}
     }

@@ -19,7 +19,8 @@ public class Validator<T>{
         if(input.trim().equals("")) throw new EmptyInputException();
         String name = input.replace(" ", "_");
         String regex = "^[a-zA-Z0-9_]{1," + length + "}$";
-        if(!name.matches(regex)) throw new InvalidDataException("Name must be less than " + length + " characters and only contain letters, numbers, and underscores.");
+        if(!name.matches(regex)) throw new InvalidDataException(
+                "Name must be less than " + length + " characters and only contain letters, numbers, and underscores.");
         return name;
     }
 }

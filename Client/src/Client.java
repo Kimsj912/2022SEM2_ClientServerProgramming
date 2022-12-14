@@ -1,10 +1,9 @@
 import Exceptions.EmptyInputException;
 import Exceptions.ServiceTerminateException;
-import MethodEnums.EMainMenu;
-import MethodEnums.Course.SSelectCourse;
-import MethodEnums.Reservation.SSelectReservation;
-import MethodEnums.Student.SSelectStudent;
-import Utils.Input.InputValue;
+import Menus.MMainMenu;
+import Menus.Course.MSelectCourseMenu;
+import Menus.Reservation.MSelectReservationMenu;
+import Menus.Student.MSelectStudentMenu;
 import Utils.Print.Printer;
 
 import java.io.IOException;
@@ -41,27 +40,30 @@ public class Client extends CommonClient {
         }
     }
 
-    public void run() throws IOException, ServiceTerminateException, EmptyInputException{
+    public void run() throws IOException{
         while(true) {
-            String method = Printer.selectMenu(EMainMenu.class, "Main Menu");
-            if(method == null) return;
-            invokeMethod(this.getClass(), method, this);
+            try{
+                String method = Printer.selectMenu(MMainMenu.class, "Main Menu");
+                if(method == null) return;
+                invokeMethod(this.getClass(), method, this);
+            } catch (EmptyInputException ignored){}
+            catch (ServiceTerminateException e){exit();}
         }
     }
 
     public void selectCourse() throws IOException, ServiceTerminateException, EmptyInputException{
-        selectMenu(SSelectCourse.class, "Select Course Menu", CourseClient.class, this.courseClient);
+        selectMenu(MSelectCourseMenu.class, "Select Course Menu", CourseClient.class, this.courseClient);
     }
 
     public void selectStudent() throws IOException, ServiceTerminateException, EmptyInputException{
-        selectMenu(SSelectStudent.class, "Select Student Menu", StudentClient.class, this.studentClient);
+        selectMenu(MSelectStudentMenu.class, "Select Student Menu", StudentClient.class, this.studentClient);
     }
 
     public void selectReservation() throws IOException, ServiceTerminateException, EmptyInputException{
-        selectMenu(SSelectReservation.class, "Select Reservation Menu", ReservationClient.class, this.reservationClient);
+        selectMenu(MSelectReservationMenu.class, "Select Reservation Menu", ReservationClient.class, this.reservationClient);
     }
 
-    public void exit() throws RemoteException{
+    public void exit(){
         System.out.println("Good Bye!");
         System.exit(0);
     }
